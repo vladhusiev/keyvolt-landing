@@ -1,2 +1,4 @@
-SERVER: yarn develop
-CLIENT: yarn dev
+# SERVER
+yarn develop
+# CLIENT
+yarn dev
