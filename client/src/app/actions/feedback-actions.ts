@@ -14,7 +14,7 @@ export async function sendFeedbackAction(prevState: any, formData: FormData) {
 	};
 
 	const validatedFields = feedbackSchema.safeParse(data);
-	console.log(validatedFields.error.flatten().fieldErrors);
+
 	if (!validatedFields.success) {
 		return {
 			...prevState,
@@ -25,7 +25,7 @@ export async function sendFeedbackAction(prevState: any, formData: FormData) {
 	}
 
 	const responseData = await registerFeedbackService(validatedFields.data);
-	console.log(responseData, validatedFields.data);
+
 	if (responseData.error) {
 		return {
 			...prevState,

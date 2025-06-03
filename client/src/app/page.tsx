@@ -1,5 +1,5 @@
 import { FeedbackForm } from '@/app/components/feedback-form'
-
+import SolarCalculator from '@/app/components/solar-calculator/solar-calculator'
 async function loader() {
 	const path = '/api/home-page'
 	const BASE_URL = 'http://localhost:1337'
@@ -19,6 +19,7 @@ export default async function Home() {
 			<h1>{data.title}</h1>
 			<p>{data.description}</p>
 			<FeedbackForm />
+			<SolarCalculator />
 		</div>
 	)
 }
