@@ -1,25 +1,22 @@
-import { FeedbackForm } from '@/app/components/feedback-form'
-import SolarCalculator from '@/app/components/solar-calculator/solar-calculator'
-async function loader() {
-	const path = '/api/home-page'
-	const BASE_URL = 'http://localhost:1337'
-	const url = new URL(path, BASE_URL)
+'use client'
 
-	const response = await fetch(url.href)
-	const data = await response.json()
+import Benefits from './components/benefits/benefits'
+import Contact from './components/contact/contact'
+import Features from './components/features/features'
+import Hero from './components/hero/hero'
+import Calculator from './components/solar-calculator/solar-calculator'
+import Testimonials from './components/testimonials/testimonials'
+import styles from './page.module.css'
 
-	return { ...data.data }
-}
-
-export default async function Home() {
-	const data = await loader()
-
+export default function Home() {
 	return (
-		<div>
-			<h1>{data.title}</h1>
-			<p>{data.description}</p>
-			<FeedbackForm />
-			<SolarCalculator />
-		</div>
+		<main className={styles.main}>
+			<Hero />
+			<Features />
+			<Calculator />
+			<Benefits />
+			<Testimonials />
+			<Contact />
+		</main>
 	)
 }

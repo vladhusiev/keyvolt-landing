@@ -1,0 +1,157 @@
+.navbar {
+	position: relative;
+	background: transparent;
+	z-index: 1000;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--border-color-30);
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo {
+	flex-shrink: 0;
+	margin-right: 60px;
+}
+
+.logoImage {
+	height: 40px;
+	width: auto;
+}
+
+.menu {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	justify-content: space-between;
+}
+
+.menuList {
+	display: flex;
+	gap: 32px;
+	list-style: none;
+}
+
+.menuItem {
+	color: #ffffff;
+}
+
+.menuLink {
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 500;
+	transition: color 0.2s;
+}
+
+.menuLink:hover {
+	color: var(--primary-color);
+}
+
+.contactButton {
+	padding: 12px 24px;
+	background: rgb(69, 92, 100);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	color: #ffffff;
+	border-radius: 50px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.contactButton:hover {
+	background: var(--primary-color);
+	border-color: rgba(255, 255, 255, 0.3);
+	color: var(--text-primary);
+}
+
+.menuButton {
+	display: none;
+	flex-direction: column;
+	gap: 6px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 4px;
+}
+
+.menuButton span {
+	display: block;
+	width: 24px;
+	height: 2px;
+	background: #ffffff;
+	transition: all 0.3s;
+}
+
+@media (max-width: 1024px) {
+	.logo {
+		margin-right: 0;
+	}
+
+	.menuButton {
+		display: flex;
+	}
+
+	.menu {
+		position: absolute;
+		top: 72px;
+		left: 0;
+		right: 0;
+		background: white;
+		padding: 20px;
+		flex-direction: column;
+		align-items: stretch;
+		transform: translateY(-100%);
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s;
+	}
+
+	.menu.active {
+		transform: translateY(0);
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.menuList {
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.menuItem {
+		color: var(--text-primary);
+	}
+
+	.menuLink {
+		color: var(--text-primary);
+	}
+
+	.contactButton {
+		background: var(--primary-color);
+		color: var(--text-primary);
+		border: none;
+	}
+
+	.contactButton:hover {
+		background: var(--primary-color-dark);
+	}
+
+	.menuButton.active span:nth-child(1) {
+		transform: translateY(8px) rotate(45deg);
+	}
+
+	.menuButton.active span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.menuButton.active span:nth-child(3) {
+		transform: translateY(-8px) rotate(-45deg);
+	}
+}
