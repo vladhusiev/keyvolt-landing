@@ -7,7 +7,7 @@ import BanknoteArrowUpIcon from '@/app/components/custom/HeroCard/icons/banknote
 import HandshakeIcon from '@/app/components/custom/HeroCard/icons/handshake.svg'
 import PlugZapIcon from '@/app/components/custom/HeroCard/icons/plug-zap.svg'
 import PlugIcon from '@/app/components/custom/HeroCard/icons/plug.svg'
-import Navbar from '../navbar/navbar'
+import Navbar from '../../components/navbar/navbar'
 import styles from './hero.module.css'
 
 const features = [

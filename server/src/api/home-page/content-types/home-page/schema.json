@@ -4,17 +4,21 @@
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "Home Page"
+    "displayName": "Info",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "description": {
+    "hero_title": {
       "type": "text"
+    },
+    "hero_description": {
+      "type": "text"
+    },
+    "hero_btn_name": {
+      "type": "string"
     }
   }
 }
