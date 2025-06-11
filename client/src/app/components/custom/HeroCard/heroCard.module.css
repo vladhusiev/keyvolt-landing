@@ -10,7 +10,7 @@
 	max-width: 285px;
 	flex: 1;
 	color: #fff;
-	backdrop-filter: blur(8px);
+	backdrop-filter: blur(40px);
 }
 
 .icon {

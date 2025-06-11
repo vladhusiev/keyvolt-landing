@@ -82,50 +82,75 @@ export default function Solutions() {
 
 	return (
 		<section className={styles.solutionsSection}>
-			<div className={styles.left}>
-				<div className={styles.titleWrap}>
-					<span className={styles.iconBolt}>⚡</span>
-					<h2 className={styles.title}>
-						Рішення, яке
+			<div className={styles.container}>
+				<div className={styles.header}>
+					<div className={styles.titleWrap}>
+						<h2 className={styles.title}>
+							Рішення, яке
+							<br />
+							підходить для усіх
+						</h2>
+					</div>
+					<div className={styles.sublabel}>
+						Ми не продаємо – ми будуємо енергетичне партнерство
 						<br />
-						підходить для усіх
-					</h2>
+						Встановлення за наш кошт. Результати – вже з першого дня
+					</div>
 				</div>
-				<div className={styles.list}>
-					{solutions.map((item, idx) => (
-						<button
-							key={idx}
-							className={`${styles.listItem} ${
-								activeTab === idx ? styles.active : ''
+				<div className={styles.content}>
+					<div className={styles.left}>
+						<div className={styles.list}>
+							{solutions.map((item, idx) => (
+								<button
+									key={idx}
+									className={`${styles.listItem} ${
+										activeTab === idx ? styles.active : ''
+									}`}
+									onClick={() => handleTabClick(idx)}
+									type="button"
+								>
+									<div className={styles.itemContent}>
+										<div className={styles.itemContentTop}>
+											<span className={styles.itemIcon}>
+												{item.icon}
+											</span>
+											<div className={styles.itemTitle}>
+												{item.name}
+											</div>
+										</div>
+
+										<div className={styles.itemDesc}>
+											{item.description}
+										</div>
+									</div>
+								</button>
+							))}
+						</div>
+					</div>
+					<div className={styles.right}>
+						<div
+							className={`${styles.tabs} ${
+								isFading ? styles.fading : ''
 							}`}
-							onClick={() => handleTabClick(idx)}
-							type="button"
 						>
-							<span className={styles.itemIcon}>{item.icon}</span>
-							<div>
-								<div className={styles.itemTitle}>
-									{item.name}
-								</div>
-								<div className={styles.itemDesc}>
-									{item.description}
+							<div className={styles.imageWrap}>
+								<Image
+									src={active.image.url}
+									alt={active.name}
+									width={420}
+									height={320}
+									className={styles.image}
+								/>
+								<div className={styles.imageNote}>
+									{active.main_text}
 								</div>
 							</div>
-						</button>
-					))}
+						</div>
+					</div>
 				</div>
-			</div>
-			<div className={`${styles.right} ${isFading ? styles.fading : ''}`}>
-				<div className={styles.imageWrap}>
-					<Image
-						src={active.image.url}
-						alt={active.name}
-						width={420}
-						height={320}
-						className={styles.image}
-					/>
-					<div className={styles.imageNote}>{active.mainText}</div>
+				<div className={styles.buttonWrap}>
+					<Button>Отримати розрахунок</Button>
 				</div>
-				<Button>Отримати розрахунок</Button>
 			</div>
 		</section>
 	)

@@ -61,7 +61,7 @@
 
 body {
 	background: var(--background-dark);
-	color: var(--foreground);
+	color: var(--background);
 	font-family: var(--font-primary);
 }
 

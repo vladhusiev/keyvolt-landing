@@ -5,7 +5,7 @@ interface Data {
   hero_description: string
   hero_btn_name: string
   features: { id: number, icon: {url: string}, text: string }[]
-  solutions: { id: number, icon: string, image: {url: string}, name: string, description: string, mainText: string }[]
+  solutions: { id: number, icon: string, image: {url: string}, name: string, description: string, main_text: string }[]
 }
 
 // const defaultData: Data = {

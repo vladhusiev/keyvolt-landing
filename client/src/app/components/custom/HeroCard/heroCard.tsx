@@ -8,12 +8,10 @@ interface HeroCardProps {
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({ icon, children }) => {
-	const imageUrl = `${icon}`
-
 	return (
 		<div className={styles.card}>
 			<div className={styles.icon}>
-				<Image src={imageUrl} alt="icon" width={32} height={32} />
+				<Image src={icon} alt="icon" width={32} height={32} />
 			</div>
 			<div className={styles.text}>{children}</div>
 		</div>
