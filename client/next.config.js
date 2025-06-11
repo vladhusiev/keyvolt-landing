@@ -8,6 +8,12 @@ const nextConfig = {
         port: '1337',
         pathname: '/uploads/**',
       },
+      {
+        // Add Strapi Cloud support
+        protocol: 'https',
+        hostname: 'integral-splendor-60553a175f.media.strapiapp.com',
+        pathname: '/**',
+      },
     ],
   },
   webpack(config) {

@@ -8,8 +8,7 @@ interface HeroCardProps {
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({ icon, children }) => {
-	const BASE_URL = 'http://localhost:1337'
-	const imageUrl = `${BASE_URL}${icon}`
+	const imageUrl = `${icon}`
 
 	return (
 		<div className={styles.card}>
