@@ -22,6 +22,10 @@
 .content {
 	flex: 1;
 	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .title {
@@ -31,6 +35,7 @@
 	color: var(--background);
 	margin-bottom: 24px;
 	text-align: center;
+	max-width: 740px;
 }
 
 .description {
@@ -39,6 +44,7 @@
 	color: var(--text-secondary);
 	margin-bottom: 32px;
 	text-align: center;
+	max-width: 680px;
 }
 
 .buttonContainer {

@@ -19,6 +19,16 @@
     },
     "hero_btn_name": {
       "type": "string"
+    },
+    "features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feature.feature"
+    },
+    "solutions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::solution.solution"
     }
   }
 }
