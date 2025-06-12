@@ -29,6 +29,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::solution.solution"
+    },
+    "solutions_title": {
+      "type": "string"
     }
   }
 }
