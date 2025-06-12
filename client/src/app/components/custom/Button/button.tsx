@@ -5,16 +5,24 @@ export interface ButtonProps {
 	children: React.ReactNode
 	onClick?: () => void
 	className?: string
+	noArrow?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className }) => {
+const Button: React.FC<ButtonProps> = ({
+	children,
+	onClick,
+	className,
+	noArrow = false
+}) => {
 	return (
 		<button
-			className={`${styles.customButton} ${className || ''}`}
+			className={`${styles.customButton} ${className || ''} ${
+				noArrow ? styles.noArrow : ''
+			}`}
 			onClick={onClick}
 		>
 			<span className={styles.customButtonText}>{children}</span>
-			<div className={styles.customButtonIcon}>
+			<div className={styles.customButtonIcon} hidden={noArrow}>
 				<Image
 					src="/images/icons/arrow-right.svg"
 					alt="Arrow right"

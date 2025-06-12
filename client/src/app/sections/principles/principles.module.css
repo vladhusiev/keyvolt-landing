@@ -1,0 +1,55 @@
+.principles {
+	background: rgba(255, 255, 255, 0.05);
+	padding: 120px 0;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	flex: 1;
+}
+
+.cardsGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 32px;
+	margin-top: 32px;
+}
+
+.card {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 0.08)
+	);
+	border-radius: 20px;
+	padding: 32px 28px;
+	color: #fff;
+	font-size: 18px;
+	box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+}
+
+.cardTitle {
+	color: #fff;
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 12px;
+}
+
+.cardNumber {
+	color: #ffd600;
+	margin-right: 6px;
+}
+
+.cardText ul {
+	margin: 8px 0 0 18px;
+	padding: 0;
+	font-size: 16px;
+}
+
+.cardText {
+	font-size: 16px;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.8);
+}

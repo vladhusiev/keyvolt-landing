@@ -16,6 +16,10 @@
 	transition: all 0.2s;
 }
 
+.customButton.noArrow {
+	padding: 8px 24px;
+}
+
 .customButton:hover {
 	background: var(--primary-color-dark);
 }

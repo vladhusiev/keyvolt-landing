@@ -1,4 +1,5 @@
 import Button from '@/app/components/custom/Button/button'
+import Title from '@/app/components/custom/Title/title'
 import { useData } from '@/app/hooks/useData'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -70,6 +71,10 @@ export default function Solutions() {
 
 	const solutions = data?.solutions
 	const active = solutions[activeTab]
+	const imageUrl = new URL(
+		active.image.url,
+		process.env.NEXT_PUBLIC_STRAPI_URL
+	).toString()
 
 	const handleTabClick = (idx: number) => {
 		if (idx === activeTab) return
@@ -85,11 +90,11 @@ export default function Solutions() {
 			<div className={styles.container}>
 				<div className={styles.header}>
 					<div className={styles.titleWrap}>
-						<h2 className={styles.title}>
+						<Title>
 							Рішення, яке
 							<br />
 							підходить для усіх
-						</h2>
+						</Title>
 					</div>
 					<div className={styles.sublabel}>
 						Ми не продаємо – ми будуємо енергетичне партнерство
@@ -135,7 +140,7 @@ export default function Solutions() {
 						>
 							<div className={styles.imageWrap}>
 								<Image
-									src={active.image.url}
+									src={imageUrl}
 									alt={active.name}
 									width={420}
 									height={320}

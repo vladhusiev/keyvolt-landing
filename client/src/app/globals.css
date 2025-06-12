@@ -59,6 +59,18 @@
 	}
 }
 
+/* Для Chrome, Safari, Edge, Opera */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Для Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
 body {
 	background: var(--background-dark);
 	color: var(--background);
