@@ -1,0 +1,111 @@
+.backdrop {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.3);
+	backdrop-filter: blur(4px);
+	transition: opacity 0.3s;
+	z-index: 50;
+}
+
+.modalWrapper {
+	position: fixed;
+	inset: 0;
+	display: flex;
+	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+	padding: 16px;
+	z-index: 51;
+}
+
+.modal {
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+	padding: 32px 24px;
+	max-width: 400px;
+	width: 100%;
+	animation: modalSlideIn 0.3s ease-out;
+	position: relative;
+}
+
+.iconWrap {
+	margin: 0 auto 16px auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: #d1fae5;
+	animation: scaleIn 0.5s ease-out;
+}
+
+.icon {
+	width: 28px;
+	height: 28px;
+	color: #059669;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: 600;
+	color: #222;
+	margin-bottom: 8px;
+	text-align: center;
+	animation: fadeIn 0.5s ease-out 0.2s both;
+}
+
+.text {
+	font-size: 15px;
+	color: #666;
+	margin-bottom: 24px;
+	text-align: center;
+	animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+.button {
+	width: 100%;
+	padding: 12px 0;
+	border: none;
+	border-radius: 8px;
+	background: #2563eb;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.2s;
+	animation: fadeIn 0.5s ease-out 0.4s both;
+}
+.button:hover {
+	background: #1d4ed8;
+}
+
+@keyframes modalSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes scaleIn {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
