@@ -37,8 +37,8 @@ export const SuccessModal = ({ isOpen, onClose }: SuccessModalProps) => {
 						Повідомлення успішно відправлено
 					</h3>
 					<p className={styles.text}>
-						Дякуємо за звернення! Ми зв'яжемося з вами в найближчий
-						час.
+						Дякуємо за звернення! Ми зв&apos;яжемося з вами в
+						найближчий час.
 					</p>
 					<button onClick={onClose} className={styles.button}>
 						Закрити
