@@ -31,6 +31,12 @@
 	z-index: 1;
 }
 
+@media (max-width: 1300px) {
+	.titleLine {
+		display: none;
+	}
+}
+
 .titleLine::after {
 	content: '';
 	position: absolute;
@@ -41,4 +47,10 @@
 	height: 1px;
 	background: var(--background-light, #fff);
 	z-index: 0;
+}
+
+@media (max-width: 1000px) {
+	.title {
+		font-size: 32px;
+	}
 }

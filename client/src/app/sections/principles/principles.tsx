@@ -43,7 +43,7 @@ const cards = [
 
 const Principles = () => {
 	return (
-		<section className={styles.principles}>
+		<section className={styles.principles} id="how-it-works">
 			<div className={styles.container}>
 				<Title>Принцип роботи</Title>
 				<div className={styles.cardsGrid}>

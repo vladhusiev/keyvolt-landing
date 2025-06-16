@@ -11,7 +11,7 @@ const nextConfig = {
       {
         // Add Strapi Cloud support
         protocol: 'https',
-        hostname: 'integral-splendor-60553a175f.media.strapiapp.com',
+        hostname: 'orderly-heart-64e30646b8.media.strapiapp.com',
         pathname: '/**',
       },
     ],

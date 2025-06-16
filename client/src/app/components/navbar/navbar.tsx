@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import styles from './navbar.module.css'
 import Button from '../custom/Button/button'
+import styles from './navbar.module.css'
 
 interface MenuItem {
 	id: string
@@ -9,8 +9,8 @@ interface MenuItem {
 	href: string
 }
 
-const menuItems: MenuItem[] = [
-	{ id: 'for-whom', label: 'Для кого', href: '#for-whom' },
+export const menuItems: MenuItem[] = [
+	{ id: 'for-whom', label: 'Для кого', href: '#solutions' },
 	{ id: 'how-it-works', label: 'Принцип роботи', href: '#how-it-works' },
 	{ id: 'economics', label: 'Економіка', href: '#economics' },
 	{ id: 'cases', label: 'Кейси', href: '#cases' },
@@ -22,6 +22,19 @@ const Navbar: React.FC = () => {
 
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen)
+	}
+
+	const handleMenuItemClick = (
+		e: React.MouseEvent<HTMLAnchorElement>,
+		href: string
+	) => {
+		e.preventDefault()
+		const id = href.replace('#', '')
+		const el = document.getElementById(id)
+		if (el) {
+			el.scrollIntoView({ behavior: 'smooth' })
+		}
+		setIsMenuOpen(false)
 	}
 
 	return (
@@ -58,14 +71,29 @@ const Navbar: React.FC = () => {
 					<ul className={styles.menuList}>
 						{menuItems.map(item => (
 							<li key={item.id} className={styles.menuItem}>
-								<a href={item.href} className={styles.menuLink}>
+								<a
+									href={item.href}
+									className={styles.menuLink}
+									onClick={e =>
+										handleMenuItemClick(e, item.href)
+									}
+								>
 									{item.label}
 								</a>
 							</li>
 						))}
 					</ul>
 				</div>
-				<Button variant="altLight" className={styles.contactButton}>
+				<Button
+					variant="altLight"
+					className={styles.contactButton}
+					onClick={() => {
+						const el = document.getElementById('contacts')
+						if (el) {
+							el.scrollIntoView({ behavior: 'smooth' })
+						}
+					}}
+				>
 					Контактна форма
 				</Button>
 			</div>

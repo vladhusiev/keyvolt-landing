@@ -1,0 +1,12 @@
+.cases {
+	padding-block: 60px;
+}
+
+.cases__desc {
+	margin-top: 24px;
+	font-size: 20px;
+	line-height: 155%;
+	max-width: 780px;
+	color: rgba(255, 255, 255, 0.8);
+	margin-bottom: 60px;
+}

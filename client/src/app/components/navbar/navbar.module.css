@@ -71,13 +71,36 @@
 	transition: all 0.3s;
 }
 
+.contactButton {
+	background: var(--primary-color);
+	color: var(--text-primary);
+	border: none;
+}
+
+.contactButton:hover {
+	background: var(--primary-color-dark);
+}
+
 @media (max-width: 1024px) {
 	.logo {
 		margin-right: 0;
+		order: 1;
+	}
+
+	.contactButton {
+		order: 2;
+		margin: 0 auto;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 2;
 	}
 
 	.menuButton {
 		display: flex;
+		order: 3;
+		margin-left: 0;
+		position: static;
 	}
 
 	.menu {
@@ -93,6 +116,8 @@
 		opacity: 0;
 		visibility: hidden;
 		transition: all 0.3s;
+		background: transparent;
+		backdrop-filter: blur(40px);
 	}
 
 	.menu.active {
@@ -107,21 +132,11 @@
 	}
 
 	.menuItem {
-		color: var(--text-primary);
+		color: var(--text-light);
 	}
 
 	.menuLink {
-		color: var(--text-primary);
-	}
-
-	.contactButton {
-		background: var(--primary-color);
-		color: var(--text-primary);
-		border: none;
-	}
-
-	.contactButton:hover {
-		background: var(--primary-color-dark);
+		color: var(--text-light);
 	}
 
 	.menuButton.active span:nth-child(1) {
