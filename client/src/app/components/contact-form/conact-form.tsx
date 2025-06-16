@@ -32,7 +32,7 @@ const MaskedPhoneInput = IMaskMixin(({ inputRef, ...props }) => (
 ))
 
 const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
-	const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(true)
+	const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
 	const [formState, formAction] = useActionState(
 		sendContactAction,
 		INITIAL_STATE
