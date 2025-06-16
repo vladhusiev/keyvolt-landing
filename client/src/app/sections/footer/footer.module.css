@@ -1,0 +1,29 @@
+.footer {
+    padding: 60px 0 100px;
+    background: rgba(var(--background-dark), 0.05);
+}
+
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__logo {
+    display: grid;
+    gap: 16px;
+}
+
+.footer__logoImage {
+    max-height: 50px;
+    height: 100%;
+    width: auto;
+}
+
+.footer__logoText {
+    width: 100%;
+    max-width: 220px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+}

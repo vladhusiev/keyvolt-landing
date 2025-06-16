@@ -5,7 +5,7 @@ import SolarCalculator from '@/app/sections/solar-calculator/solar-calculator'
 import Solutions from '@/app/sections/solutions/solutions'
 import styles from './page.module.css'
 import Hero from './sections/hero/hero'
-
+import Footer from './sections/footer/footer'
 export default function Home() {
 	return (
 		<main className={styles.main}>
@@ -13,6 +13,7 @@ export default function Home() {
 			<Solutions />
 			<Principles />
 			<SolarCalculator />
+			<Footer />
 		</main>
 	)
 }
