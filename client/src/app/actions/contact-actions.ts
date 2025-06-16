@@ -1,6 +1,7 @@
 'use server'
 
 import { contactSchema } from "@/app/schemas/contact";
+import { registerFeedbackService } from "@/app/services/feedback-service";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function sendContactAction(prevState: any, formData: FormData) {
@@ -22,16 +23,23 @@ export async function sendContactAction(prevState: any, formData: FormData) {
 			message: "Validation failed"
 		};
 	}
+	console.log(validatedFields.data)
 
 	// Here you would typically send the data to your backend service
 	// For now, we'll simulate a successful submission
 	try {
-		// Simulate API call delay
-		await new Promise(resolve => setTimeout(resolve, 1000));
 		
 		// You can replace this with actual service call
-		// const responseData = await registerContactService(validatedFields.data);
-		
+		const responseData = await registerFeedbackService(validatedFields.data);
+		if (responseData.error) {
+			return {
+				...prevState,
+				strapiErrors: responseData.error,
+				zodErrors: null,
+				message: "Error"
+			};
+		}
+
 		return { 
 			message: 'Success', 
 			status: 200,

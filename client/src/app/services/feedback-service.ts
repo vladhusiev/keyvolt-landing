@@ -9,7 +9,7 @@ interface FeedBackProps {
 
 export async function registerFeedbackService(feedbackData: FeedBackProps) {
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
-  const url = new URL("/api/feedbacks", baseUrl);
+  const url = `${baseUrl}/api/feedbacks`
 
   try {
     const response = await fetch(url, {
