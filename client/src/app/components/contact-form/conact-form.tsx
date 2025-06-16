@@ -1,6 +1,5 @@
 'use client'
 
-import { sendContactAction } from '@/app/actions/contact-actions'
 import { useActionState, useEffect, useState } from 'react'
 import { IMaskMixin } from 'react-imask'
 import { SuccessModal } from '../success-modal'
@@ -10,6 +9,7 @@ import FormField from '../form-field/form-field'
 import Input from '../input/input'
 import Label from '../label/label'
 
+import { sendFeedbackAction } from '@/app/actions/feedback-actions'
 import { Phone } from 'lucide-react'
 import Button from '../custom/Button/button'
 import { TelegramIcon, ViberIcon } from '../icons'
@@ -34,7 +34,7 @@ const MaskedPhoneInput = IMaskMixin(({ inputRef, ...props }) => (
 const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 	const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
 	const [formState, formAction] = useActionState(
-		sendContactAction,
+		sendFeedbackAction,
 		INITIAL_STATE
 	)
 	const formErrors = formState?.zodErrors

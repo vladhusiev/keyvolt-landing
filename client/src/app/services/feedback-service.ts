@@ -23,6 +23,6 @@ export async function registerFeedbackService(feedbackData: FeedBackProps) {
     return await response.json();
   } catch (error) {
     console.error("Feedback Service Error:", error);
-    return { error: "Failed to send feedback" };
+    return { error: "Помилка відправки форми" };
   }
 }
