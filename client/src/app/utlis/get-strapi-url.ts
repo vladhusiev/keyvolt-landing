@@ -6,5 +6,4 @@ export function getStrapiURL() {
            ? 'https://your-project-name.strapi.app'
            : 'http://localhost:1337';
 }
-}
 

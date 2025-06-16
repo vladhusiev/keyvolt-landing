@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import styles from './HeroCard.module.css'
+import styles from './heroCard.module.css'
 
 interface HeroCardProps {
 	icon: string
