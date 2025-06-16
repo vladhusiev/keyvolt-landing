@@ -24,7 +24,7 @@ export default function Hero() {
 					<h1 className={styles.title}>{title}</h1>
 					<p className={styles.description}>{description}</p>
 					<div className={styles.buttonContainer}>
-						<Button onClick={() => {}}>{buttonLabel}</Button>
+						<Button arrow={true} onClick={() => {}}>{buttonLabel}</Button>
 					</div>
 				</div>
 			</div>

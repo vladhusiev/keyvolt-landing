@@ -53,25 +53,6 @@
 	color: var(--primary-color);
 }
 
-.contactButton {
-	padding: 12px 24px;
-	background: rgb(69, 92, 100);
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	color: #ffffff;
-	border-radius: 50px;
-	font-size: 16px;
-	font-weight: 600;
-	cursor: pointer;
-	transition: all 0.2s;
-}
-
-.contactButton:hover {
-	background: var(--primary-color);
-	border-color: rgba(255, 255, 255, 0.3);
-	color: var(--text-primary);
-}
-
 .menuButton {
 	display: none;
 	flex-direction: column;

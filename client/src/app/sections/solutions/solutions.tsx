@@ -154,7 +154,7 @@ export default function Solutions() {
 					</div>
 				</div>
 				<div className={styles.buttonWrap}>
-					<Button>Отримати розрахунок</Button>
+					<Button arrow={true}>Отримати розрахунок</Button>
 				</div>
 			</div>
 		</section>

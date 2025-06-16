@@ -1,37 +1,32 @@
-import Image from 'next/image'
-import React from 'react'
-import styles from './button.module.css'
-export interface ButtonProps {
-	children: React.ReactNode
-	onClick?: () => void
-	className?: string
-	noArrow?: boolean
+import Image from "next/image";
+import React from "react";
+import styles from "./button.module.css";
+import clsx from "clsx";
+
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  className?: string;
+  arrow?: boolean;
+  variant?: "primary" | "altLight" | "altDark";
+  type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
-	children,
-	onClick,
-	className,
-	noArrow = false
-}) => {
-	return (
-		<button
-			className={`${styles.customButton} ${className || ''} ${
-				noArrow ? styles.noArrow : ''
-			}`}
-			onClick={onClick}
-		>
-			<span className={styles.customButtonText}>{children}</span>
-			<div className={styles.customButtonIcon} hidden={noArrow}>
-				<Image
-					src="/images/icons/arrow-right.svg"
-					alt="Arrow right"
-					width={28}
-					height={28}
-				/>
-			</div>
-		</button>
-	)
-}
+const Button: React.FC<ButtonProps> = ({ children, onClick, className, arrow = false, variant = "primary", type = "button" }) => {
+  return (
+    <button
+      className={clsx(styles.button, styles[`button__${variant}`], className, arrow && styles.button__hasArrow)}
+      onClick={onClick}
+      type={type}
+    >
+      <span className={styles.button__text}>{children}</span>
+      {arrow && (
+        <div className={styles.button__icon}>
+          <Image src="/images/icons/arrow-right.svg" alt="Arrow right" width={28} height={28} />
+        </div>
+      )}
+    </button>
+  );
+};
 
-export default Button
+export default Button;

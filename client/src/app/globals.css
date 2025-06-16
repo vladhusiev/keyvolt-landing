@@ -45,19 +45,19 @@
 		'Helvetica Neue', sans-serif;
 }
 
-@theme inline {
+/* @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--font-sans: var(--font-primary);
 	--font-mono: var(--font-geist-mono);
-}
-
+} */
+/* 
 @media (prefers-color-scheme: dark) {
 	:root {
 		--background: #0a0a0a;
 		--foreground: #ededed;
 	}
-}
+} */
 
 /* Для Chrome, Safari, Edge, Opera */
 input[type='number']::-webkit-outer-spin-button,

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import styles from './navbar.module.css'
+import Button from '../custom/Button/button'
 
 interface MenuItem {
 	id: string
@@ -64,9 +65,9 @@ const Navbar: React.FC = () => {
 						))}
 					</ul>
 				</div>
-				<button className={styles.contactButton}>
+				<Button variant="altLight" className={styles.contactButton}>
 					Контактна форма
-				</button>
+				</Button>
 			</div>
 		</nav>
 	)

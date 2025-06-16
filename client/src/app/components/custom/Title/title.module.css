@@ -9,6 +9,10 @@
 	position: relative;
 }
 
+.titleWrap--center {
+	text-align: center;
+}
+
 .titleLine {
 	position: absolute;
 	top: 0;

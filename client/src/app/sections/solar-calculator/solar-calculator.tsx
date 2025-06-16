@@ -127,7 +127,7 @@ export default function SolarCalculator(): React.ReactElement {
 						<span>Термін окупності:</span>
 						<b className={styles.highlight}>{results?.ocupnost}</b>
 					</div>
-					<Button noArrow>Залишити заявку</Button>
+					<Button>Залишити заявку</Button>
 				</div>
 			</div>
 		</section>

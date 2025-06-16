@@ -1,0 +1,9 @@
+.formField {
+  display: grid;
+  gap: 8px;
+}
+
+.formField__error {
+  font-size: 14px;
+  color: #ff0000;
+}

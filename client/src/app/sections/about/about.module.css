@@ -1,0 +1,40 @@
+.about {
+  padding-block: 60px 120px;
+}
+
+.about__title {
+  margin-bottom: 24px;
+}
+
+.about__content {
+  display: grid;
+  gap: 16px;
+}
+
+.about__contentHeading {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+.about__contentHeadingHighlight {
+  color: var(--primary-color);
+}
+
+.about__contentText {
+  max-width: 750px;
+}
+
+.about__partners {
+  display: flex;;
+  gap: 42px;
+  margin-top: 60px;
+}
+
+.about__partner {
+  max-height: 30px;
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+  filter: grayscale(100%);
+}

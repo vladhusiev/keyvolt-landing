@@ -1,0 +1,23 @@
+.contacts {
+  padding-block: 60px;
+}
+
+.contacts__header {
+  display: grid;
+  gap: 24px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contacts__headerDescription {
+  width: 100%;
+  max-width: 700px;
+  margin-inline: auto;
+  font-size: 20px;
+}
+
+.contacts__form {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
