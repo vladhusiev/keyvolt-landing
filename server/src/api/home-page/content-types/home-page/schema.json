@@ -32,6 +32,34 @@
     },
     "solutions_title": {
       "type": "string"
+    },
+    "principles_title": {
+      "type": "string"
+    },
+    "principles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::principle.principle"
+    },
+    "cases_title": {
+      "type": "string"
+    },
+    "cases_description": {
+      "type": "text"
+    },
+    "cases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::case.case"
+    },
+    "about_title": {
+      "type": "string"
+    },
+    "about_subtitle": {
+      "type": "text"
+    },
+    "about_description": {
+      "type": "text"
     }
   }
 }

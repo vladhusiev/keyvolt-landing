@@ -139,4 +139,15 @@
 	.accordion__content__open {
 		padding: 0 8px;
 	}
+	.accordion__content__text {
+		width: 80%;
+		left: 10px;
+		top: 10px;
+		padding: 24px;
+		background: rgba(7, 7, 7, 0.8);
+	}
+	.accordion__content__text__title {
+		font-size: 24px;
+		margin-bottom: 16px;
+	}
 }
