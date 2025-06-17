@@ -2,7 +2,7 @@ import clsx from "clsx";
 import styles from "./input.module.css";
 import React from "react";
 
-interface InputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   type?: string;
   placeholder?: string;
