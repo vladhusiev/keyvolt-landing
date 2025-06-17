@@ -30,6 +30,7 @@
 	color: #fff;
 	letter-spacing: 0;
 	transition: color 0.2s;
+	min-width: 40px;
 }
 
 .accordion__title--active .accordion__title__number {

@@ -18,8 +18,29 @@ export interface HeroData {
   features: { id: number; icon: { url: string }; text: string }[];
 }
 
-interface Data extends HeroData {
+export interface PrinciplesItem {
+  id: number;
+  title: string;
+  description: string;
+}
+
+export interface CasesItem {
+  id: number;
+  title: string;
+  description: string;
+  image: { url: string };
+}
+
+export interface Data extends HeroData {
   solutions: SolutionsData[];
+  principles_title: string;
+  principles: PrinciplesItem[];
+  cases_title: string;
+  cases_description: string;
+  cases: CasesItem[];
+  about_title: string;
+  about_subtitle: string;
+  about_description: string;
 }
 
 interface UseDataReturn {
@@ -39,7 +60,7 @@ export const useData = (): UseDataReturn => {
         setIsLoading(true);
         setError(null);
 
-        const path = "/api/home-page?populate[features][populate]=icon&populate[solutions][populate]=image";
+        const path = "/api/home-page?populate[features][populate]=icon&populate[solutions][populate]=image&populate[principles][populate]&populate[cases][populate]=image";
         const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
         const url = new URL(path, BASE_URL);
 
