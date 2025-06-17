@@ -1,3 +1,5 @@
+'use client'
+
 import Container from '@/app/components/container/container'
 import Button from '@/app/components/custom/Button/button'
 import Title from '@/app/components/custom/Title/title'

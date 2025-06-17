@@ -1,153 +1,144 @@
 .navbar {
-	position: relative;
-	background: transparent;
-	z-index: 1000;
-	padding: 16px 0;
-	border-bottom: 1px solid var(--border-color-30);
+  position: relative;
+  background: transparent;
+  z-index: 1000;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-color-30);
 }
 
 .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 20px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-	flex-shrink: 0;
-	margin-right: 60px;
+  flex-shrink: 0;
+  margin-right: 60px;
 }
 
 .logoImage {
-	height: 40px;
-	width: auto;
+  height: 40px;
+  width: auto;
 }
 
 .menu {
-	display: flex;
-	align-items: center;
-	flex: 1;
-	justify-content: space-between;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
 }
 
 .menuList {
-	display: flex;
-	gap: 32px;
-	list-style: none;
+  display: flex;
+  gap: 32px;
+  list-style: none;
 }
 
 .menuItem {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 .menuLink {
-	color: #ffffff;
-	font-size: 16px;
-	font-weight: 500;
-	transition: color 0.2s;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
 .menuLink:hover {
-	color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .menuButton {
-	display: none;
-	flex-direction: column;
-	gap: 6px;
-	background: none;
-	border: none;
-	cursor: pointer;
-	padding: 4px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
 }
 
 .menuButton span {
-	display: block;
-	width: 24px;
-	height: 2px;
-	background: #ffffff;
-	transition: all 0.3s;
-}
-
-.contactButton {
-	background: var(--primary-color);
-	color: var(--text-primary);
-	border: none;
-}
-
-.contactButton:hover {
-	background: var(--primary-color-dark);
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ffffff;
+  transition: all 0.3s;
 }
 
 @media (max-width: 1024px) {
-	.logo {
-		margin-right: 0;
-		order: 1;
-	}
+  .logo {
+    margin-right: 0;
+    order: 1;
+  }
 
-	.contactButton {
-		order: 2;
-		margin: 0 auto;
-		position: absolute;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 2;
-	}
+  .contactButton {
+    display: none;
+    order: 2;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
 
-	.menuButton {
-		display: flex;
-		order: 3;
-		margin-left: 0;
-		position: static;
-	}
+  .menuButton {
+    display: flex;
+    order: 3;
+    margin-left: 0;
+    position: static;
+  }
 
-	.menu {
-		position: absolute;
-		top: 72px;
-		left: 0;
-		right: 0;
-		background: white;
-		padding: 20px;
-		flex-direction: column;
-		align-items: stretch;
-		transform: translateY(-100%);
-		opacity: 0;
-		visibility: hidden;
-		transition: all 0.3s;
-		background: transparent;
-		backdrop-filter: blur(40px);
-	}
+  .menu {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    background: transparent;
+    backdrop-filter: blur(40px);
+  }
 
-	.menu.active {
-		transform: translateY(0);
-		opacity: 1;
-		visibility: visible;
-	}
+  .menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
 
-	.menuList {
-		flex-direction: column;
-		gap: 20px;
-	}
+  .menuList {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-	.menuItem {
-		color: var(--text-light);
-	}
+  .menuItem {
+    color: var(--text-light);
+  }
 
-	.menuLink {
-		color: var(--text-light);
-	}
+  .menuLink {
+    color: var(--text-light);
+  }
 
-	.menuButton.active span:nth-child(1) {
-		transform: translateY(8px) rotate(45deg);
-	}
+  .menuButton.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
 
-	.menuButton.active span:nth-child(2) {
-		opacity: 0;
-	}
+  .menuButton.active span:nth-child(2) {
+    opacity: 0;
+  }
 
-	.menuButton.active span:nth-child(3) {
-		transform: translateY(-8px) rotate(-45deg);
-	}
+  .menuButton.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }

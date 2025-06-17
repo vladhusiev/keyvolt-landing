@@ -1,104 +1,71 @@
-import Image from 'next/image'
-import React, { useState } from 'react'
-import Button from '../custom/Button/button'
-import styles from './navbar.module.css'
+"use client";
 
-interface MenuItem {
-	id: string
-	label: string
-	href: string
-}
-
-export const menuItems: MenuItem[] = [
-	{ id: 'for-whom', label: 'Для кого', href: '#solutions' },
-	{ id: 'how-it-works', label: 'Принцип роботи', href: '#how-it-works' },
-	{ id: 'economics', label: 'Економіка', href: '#economics' },
-	{ id: 'cases', label: 'Кейси', href: '#cases' },
-	{ id: 'about', label: 'Про Нас', href: '#about' }
-]
+import Image from "next/image";
+import React, { useState } from "react";
+import Button from "../custom/Button/button";
+import styles from "./navbar.module.css";
+import { menuItems } from "@/app/utlis/menu-items";
 
 const Navbar: React.FC = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen)
-	}
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
-	const handleMenuItemClick = (
-		e: React.MouseEvent<HTMLAnchorElement>,
-		href: string
-	) => {
-		e.preventDefault()
-		const id = href.replace('#', '')
-		const el = document.getElementById(id)
-		if (el) {
-			el.scrollIntoView({ behavior: 'smooth' })
-		}
-		setIsMenuOpen(false)
-	}
+  const handleMenuItemClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
 
-	return (
-		<nav className={styles.navbar}>
-			<div className={styles.container}>
-				<div className={styles.logo}>
-					<Image
-						src="/images/logo.svg"
-						alt="KeyVolt"
-						className={styles.logoImage}
-						width={120}
-						height={40}
-						priority
-					/>
-				</div>
+  return (
+    <nav className={styles.navbar}>
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <Image src="/images/logo.svg" alt="KeyVolt" className={styles.logoImage} width={120} height={40} priority />
+        </div>
 
-				<button
-					className={`${styles.menuButton} ${
-						isMenuOpen ? styles.active : ''
-					}`}
-					onClick={toggleMenu}
-					aria-label="Toggle menu"
-				>
-					<span></span>
-					<span></span>
-					<span></span>
-				</button>
+        <button
+          className={`${styles.menuButton} ${isMenuOpen ? styles.active : ""}`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-				<div
-					className={`${styles.menu} ${
-						isMenuOpen ? styles.active : ''
-					}`}
-				>
-					<ul className={styles.menuList}>
-						{menuItems.map(item => (
-							<li key={item.id} className={styles.menuItem}>
-								<a
-									href={item.href}
-									className={styles.menuLink}
-									onClick={e =>
-										handleMenuItemClick(e, item.href)
-									}
-								>
-									{item.label}
-								</a>
-							</li>
-						))}
-					</ul>
-				</div>
-				<Button
-					variant="altLight"
-					className={styles.contactButton}
-					onClick={() => {
-						const el = document.getElementById('contacts')
-						if (el) {
-							el.scrollIntoView({ behavior: 'smooth' })
-						}
-					}}
-				>
-					Контактна форма
-				</Button>
-			</div>
-		</nav>
-	)
-}
+        <div className={`${styles.menu} ${isMenuOpen ? styles.active : ""}`}>
+          <ul className={styles.menuList}>
+            {menuItems.map((item) => (
+              <li key={item.id} className={styles.menuItem}>
+                <a href={item.href} className={styles.menuLink} onClick={(e) => handleMenuItemClick(e, item.href)}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Button
+          variant="altLight"
+          className={styles.contactButton}
+          onClick={() => {
+            const el = document.getElementById("contacts");
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
+          Контактна форма
+        </Button>
+      </div>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -16,9 +16,15 @@ const Map: React.FC = () => {
         <Title className={styles.map__title}>Ми на карті</Title>
         <div className={styles.map__wrapper}>
           <GoogleMap center={MAP_COORDINATES.LOCATION_CENTER} zoom={15} className={styles.map__map} />
-          <Button variant="altDark" className={styles.map__button}>
-            Прокласти маршрут
-          </Button>
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${MAP_COORDINATES.LOCATION_CENTER.lat},${MAP_COORDINATES.LOCATION_CENTER.lng}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="altDark" className={styles.map__button}>
+              Прокласти маршрут
+            </Button>
+          </a>
         </div>
       </Container>
     </section>

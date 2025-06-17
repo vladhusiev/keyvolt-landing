@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Allow: /static/
+Allow: /_next/static/
+
+Sitemap: https://keyvoltenergy.com.ua/sitemap.xml

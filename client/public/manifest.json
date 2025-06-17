@@ -1,0 +1,27 @@
+{
+  "name": "KeyVolt Energy - Сонячна енергетика",
+  "short_name": "KeyVolt",
+  "description": "Ваш партнер з енергетичної незалежності. Встановлення сонячних панелей за наш кошт.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070707",
+  "theme_color": "#070707",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "lang": "uk",
+  "dir": "ltr",
+  "orientation": "portrait-primary"
+} 

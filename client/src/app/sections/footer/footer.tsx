@@ -1,9 +1,9 @@
 import Container from '@/app/components/container/container'
-import { menuItems } from '@/app/components/navbar/navbar'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import styles from './footer.module.css'
+import { menuItems } from '@/app/utlis/menu-items'
 
 const Footer: React.FC = () => {
 	return (
