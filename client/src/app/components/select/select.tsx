@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./select.module.css";
 import React from "react";
-import { ArrowDown, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   className?: string;
