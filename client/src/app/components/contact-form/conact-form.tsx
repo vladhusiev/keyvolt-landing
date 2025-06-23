@@ -102,7 +102,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 							type="text"
 							name="company"
 							id="company"
-							placeholder="ТОВ Рошен"
+							placeholder="ТОВ"
 						/>
 					</FormField>
 
