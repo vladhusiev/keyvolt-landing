@@ -21,10 +21,6 @@
   color: var(--primary-color);
 }
 
-.about__contentText {
-  max-width: 750px;
-}
-
 .about__partners {
   display: flex;;
   gap: 42px;

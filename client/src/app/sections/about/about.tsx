@@ -16,27 +16,9 @@ const About: React.FC<{
 			<Container>
 				<Title className={styles.about__title}>{about_title}</Title>
 				<article className={styles.about__content}>
-					<h3 className={styles.about__contentHeading}>
-						{/* Мета - створення{' '}
-						<span className={styles.about__contentHeadingHighlight}>
-							автономного
-						</span>{' '}
-						джерела електропостачання для підвищення енергетичної{' '}
-						<span className={styles.about__contentHeadingHighlight}>
-							незалежності
-						</span>{' '}
-						та{' '}
-						<span className={styles.about__contentHeadingHighlight}>
-							стабільності
-						</span> */}
-						{about_subtitle}
-					</h3>
+					<h3 className={styles.about__contentHeading} dangerouslySetInnerHTML={{ __html: about_subtitle }} />
 
-					<p className={styles.about__contentText}>
-						{about_description}
-						<br />
-						<br />
-					</p>
+					<p className={styles.about__contentText} dangerouslySetInnerHTML={{ __html: about_description }} />
 				</article>
 
 				{/* <div className={styles.about__partners}>
