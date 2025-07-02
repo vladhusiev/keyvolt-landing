@@ -75,9 +75,9 @@ export default function RootLayout({
 				/>
 
 				<link rel="dns-prefetch" href="https://maps.googleapis.com" />
+				<GoogleTagManager />
 			</head>
 			<body>
-				<GoogleTagManager />
 				{children}
 			</body>
 		</html>
