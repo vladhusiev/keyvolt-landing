@@ -79,6 +79,7 @@ export default function SolarCalculator(): React.ReactElement {
 								className={styles.inputNumber}
 								min={1}
 								max={1000000}
+								placeholder="Вкажіть потужність системи"
 							/>
 						</FormField>
 						<FormField>
@@ -103,6 +104,7 @@ export default function SolarCalculator(): React.ReactElement {
 								className={styles.inputNumber}
 								min={0}
 								max={10000}
+								placeholder="Вкажіть тариф на електроенергію"
 							/>
 						</FormField>
 

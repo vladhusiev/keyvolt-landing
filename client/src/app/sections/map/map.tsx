@@ -21,7 +21,7 @@ const Map: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="altDark" className={styles.map__button}>
+            <Button variant="primary" className={styles.map__button}>
               Прокласти маршрут
             </Button>
           </a>
