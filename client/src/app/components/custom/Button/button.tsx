@@ -11,6 +11,7 @@ interface ButtonProps {
 	arrow?: boolean
 	variant?: 'primary' | 'altLight' | 'altDark'
 	type?: 'button' | 'submit' | 'reset'
+	disabled?: boolean
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -19,7 +20,8 @@ const Button: React.FC<ButtonProps> = ({
 	className,
 	arrow = false,
 	variant = 'primary',
-	type = 'button'
+	type = 'button',
+	disabled = false
 }) => {
 	return (
 		<button
@@ -27,10 +29,12 @@ const Button: React.FC<ButtonProps> = ({
 				styles.button,
 				styles[`button__${variant}`],
 				className,
-				arrow && styles.button__hasArrow
+				arrow && styles.button__hasArrow,
+				disabled && styles.button__disabled
 			)}
 			onClick={onClick}
 			type={type}
+			disabled={disabled}
 		>
 			<span className={styles.button__text}>{children}</span>
 			{arrow && (

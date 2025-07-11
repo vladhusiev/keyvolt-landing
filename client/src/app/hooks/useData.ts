@@ -72,9 +72,8 @@ export const useData = (): UseDataReturn => {
 
         const result = await response.json();
         setData(result.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setError(error instanceof Error ? error.message : "Failed to fetch data");
+      } catch {
+        setError('Failed to fetch data');
       } finally {
         setIsLoading(false);
       }

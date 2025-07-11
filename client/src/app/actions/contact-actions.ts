@@ -10,7 +10,8 @@ export async function sendContactAction(prevState: any, formData: FormData) {
 		lastName: formData.get("lastName"),
 		phone: formData.get("phone"),
 		company: formData.get("company"),
-		message: formData.get("message")
+		message: formData.get("message"),
+		recaptchaToken: formData.get("recaptchaToken")
 	};
 
 	const validatedFields = contactSchema.safeParse(data);
@@ -23,14 +24,70 @@ export async function sendContactAction(prevState: any, formData: FormData) {
 			message: "Validation failed"
 		};
 	}
-	console.log(validatedFields.data)
+
+	// Validate reCAPTCHA v3 token
+	const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+	if (recaptchaSecret) {
+		try {
+			const recaptchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: new URLSearchParams({
+					secret: recaptchaSecret,
+					response: validatedFields.data.recaptchaToken,
+				}),
+			});
+
+			const recaptchaResult = await recaptchaResponse.json();
+			
+			if (!recaptchaResult.success) {
+				return {
+					...prevState,
+					strapiErrors: { message: "reCAPTCHA verification error" },
+					zodErrors: null,
+					message: "Error"
+				};
+			}
+
+			// Check score for reCAPTCHA v3 (0.0 - 1.0, where 1.0 = human)
+			const score = recaptchaResult.score || 0;
+			const threshold = 0.5; // Minimum threshold to pass
+
+			if (score < threshold) {
+				return {
+					...prevState,
+					strapiErrors: { message: "Suspicious activity. Please try again." },
+					zodErrors: null,
+					message: "Error"
+				};
+			}
+		} catch {
+			return {
+				...prevState,
+				strapiErrors: { message: "reCAPTCHA verification error" },
+				zodErrors: null,
+				message: "Error"
+			};
+		}
+	}
+
+	// Prepare data for Strapi (without recaptchaToken)
+	const strapiData = {
+		firstName: validatedFields.data.firstName,
+		lastName: validatedFields.data.lastName,
+		phone: validatedFields.data.phone,
+		company: validatedFields.data.company,
+		message: validatedFields.data.message,
+	};
 
 	// Here you would typically send the data to your backend service
 	// For now, we'll simulate a successful submission
 	try {
 		
 		// You can replace this with actual service call
-		const responseData = await registerFeedbackService(validatedFields.data);
+		const responseData = await registerFeedbackService(strapiData);
 		if (responseData.error) {
 			return {
 				...prevState,
@@ -50,7 +107,7 @@ export async function sendContactAction(prevState: any, formData: FormData) {
 	} catch {
 		return {
 			...prevState,
-			strapiErrors: { message: "Помилка відправки форми" },
+			strapiErrors: { message: "Form submission error" },
 			zodErrors: null,
 			message: "Error"
 		};

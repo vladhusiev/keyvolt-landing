@@ -1,80 +1,94 @@
 .button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 24px;
-  border-radius: 50px;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1;
-  cursor: pointer;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.2s;
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 24px;
+	border-radius: 50px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1;
+	cursor: pointer;
+	outline: none;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.2s;
 
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
+	@media (max-width: 768px) {
+		font-size: 16px;
+	}
 }
 
 .button__primary {
-  background: var(--primary-color);
-  color: var(--background-dark);
+	background: var(--primary-color);
+	color: var(--background-dark);
 
-  &:hover {
-    background: var(--primary-color-dark);
-  }
+	&:hover {
+		background: var(--primary-color-dark);
+	}
 
-  &:active {
-    background: var(--primary-color-light);
-  }
+	&:active {
+		background: var(--primary-color-light);
+	}
 }
 
 .button__altLight {
-  color: var(--text-light);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(40px);
+	color: var(--text-light);
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(40px);
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.25);
-  }
+	&:hover {
+		background: rgba(255, 255, 255, 0.25);
+	}
 
-  &:active {
-    background: rgba(255, 255, 255, 0.35);
-  }
+	&:active {
+		background: rgba(255, 255, 255, 0.35);
+	}
 }
 
 .button__altDark {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(40px);
+	color: var(--text-primary);
+	background: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(40px);
 
-  &:hover {
-    background: rgba(255, 255, 255, 0.25);
-  }
+	&:hover {
+		background: rgba(255, 255, 255, 0.25);
+	}
 
-  &:active {
-    background: rgba(255, 255, 255, 0.35);
-  }
+	&:active {
+		background: rgba(255, 255, 255, 0.35);
+	}
 }
 
 .button__hasArrow {
-  padding: 8px 8px 8px 24px;
+	padding: 8px 8px 8px 24px;
+}
+
+.button__disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	pointer-events: none;
+
+	&:hover {
+		background: var(--primary-color);
+	}
+
+	&:active {
+		background: var(--primary-color);
+	}
 }
 
 .button__text {
-  z-index: 1;
+	z-index: 1;
 }
 
 .button__icon {
-  display: flex;
-  align-items: center;
-  z-index: 1;
-  transition: all 0.2s;
-  background: var(--background-dark);
-  border-radius: 50%;
-  padding: 12px;
-  width: 48px;
-  height: 48px;
+	display: flex;
+	align-items: center;
+	z-index: 1;
+	transition: all 0.2s;
+	background: var(--background-dark);
+	border-radius: 50%;
+	padding: 12px;
+	width: 48px;
+	height: 48px;
 }

@@ -7,22 +7,31 @@ interface FeedBackProps {
   message: string;
 }
 
-export async function registerFeedbackService(feedbackData: FeedBackProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
-  const url = `${baseUrl}/api/feedbacks`
+export async function registerFeedbackService(data: FeedBackProps) {
+	try {
+		const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/feedbacks`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				data: {
+					firstName: data.firstName,
+					lastName: data.lastName,
+					phone: data.phone,
+					company: data.company,
+					message: data.message,
+				},
+			}),
+		});
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: { ...feedbackData } }),
-    });
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
 
-    return await response.json();
-  } catch (error) {
-    console.error("Feedback Service Error:", error);
-    return { error: "Помилка відправки форми" };
-  }
+		const result = await response.json();
+		return { data: result, error: null };
+	} catch {
+		return { data: null, error: { message: 'Failed to send feedback' } };
+	}
 }

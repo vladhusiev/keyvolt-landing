@@ -46,8 +46,8 @@ export default function SolarCalculator(): React.ReactElement {
 			try {
 				const calculationResults = calculateSolarSystem(formData)
 				setResults(calculationResults)
-			} catch (error) {
-				console.error('Calculation error:', error)
+			} catch {
+				// Handle calculation error silently
 			}
 		}
 	}, [formData])

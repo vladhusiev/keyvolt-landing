@@ -8,6 +8,7 @@ import clsx from 'clsx'
 import FormField from '../form-field/form-field'
 import Input from '../input/input'
 import Label from '../label/label'
+import ReCaptcha from '../recaptcha/recaptcha'
 
 import { sendContactAction } from '@/app/actions/contact-actions'
 import { Phone } from 'lucide-react'
@@ -33,6 +34,7 @@ const MaskedPhoneInput = IMaskMixin(({ inputRef, ...props }) => (
 
 const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 	const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
+	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [formState, formAction] = useActionState(
 		sendContactAction,
 		INITIAL_STATE
@@ -42,12 +44,56 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 	useEffect(() => {
 		if (formState?.status === 200) {
 			setIsSuccessModalOpen(true)
+			setIsSubmitting(false)
 		}
 	}, [formState?.status])
 
+	const handleSubmit = async (formData: FormData) => {
+		if (isSubmitting) return
+
+		try {
+			setIsSubmitting(true)
+
+			// Execute reCAPTCHA v3
+			if (
+				typeof window !== 'undefined' &&
+				(
+					window as unknown as Window & {
+						executeReCaptcha: () => Promise<string | null>
+					}
+				).executeReCaptcha
+			) {
+				const token = await (
+					window as unknown as Window & {
+						executeReCaptcha: () => Promise<string | null>
+					}
+				).executeReCaptcha()
+				if (token) {
+					formData.append('recaptchaToken', token)
+					formAction(formData)
+				} else {
+					setIsSubmitting(false)
+					// Show error to user
+					alert('Security check error. Please try again.')
+				}
+			} else {
+				// Fallback if reCAPTCHA is not loaded
+				formAction(formData)
+			}
+		} catch {
+			setIsSubmitting(false)
+			alert('Form submission error. Please try again.')
+		} finally {
+			setIsSubmitting(false)
+		}
+	}
+
 	return (
 		<>
-			<form action={formAction} className={clsx(styles.form, className)}>
+			<form
+				action={handleSubmit}
+				className={clsx(styles.form, className)}
+			>
 				<div className={styles.form__fields}>
 					<FormField
 						className={styles.form__field}
@@ -120,11 +166,25 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 							placeholder="Хочу замовити ваші послуги"
 						/>
 					</FormField>
+
+					<FormField
+						className={styles.form__field}
+						error={formErrors?.recaptchaToken}
+					>
+						<ReCaptcha
+							siteKey={
+								process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
+							}
+							onChange={() => {}}
+							className={styles.form__recaptcha}
+							action="contact_form"
+						/>
+					</FormField>
 				</div>
 
 				<div className={styles.form__footer}>
-					<Button type="submit" arrow={true}>
-						Відправити
+					<Button type="submit" arrow={true} disabled={isSubmitting}>
+						{isSubmitting ? 'Відправка...' : 'Відправити'}
 					</Button>
 
 					<span className={styles.form__footerText}>або</span>
