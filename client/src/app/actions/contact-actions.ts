@@ -36,7 +36,7 @@ export async function sendContactAction(prevState: any, formData: FormData) {
 				},
 				body: new URLSearchParams({
 					secret: recaptchaSecret,
-					response: validatedFields.data.recaptchaToken,
+					response: validatedFields.data.recaptchaToken || '',
 				}),
 			});
 
