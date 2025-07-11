@@ -83,12 +83,13 @@ export default function SolarCalculator(): React.ReactElement {
 							/>
 						</FormField>
 						<FormField>
-							<Label htmlFor="place">Місце встановлення</Label>
+							<Label id="place" htmlFor="place">Місце встановлення</Label>
 							<Select
 								value={formData.place}
 								onChange={handleInputChange}
 								name="place"
 								options={placeOptions}
+								aria-labelledby="place"
 							/>
 						</FormField>
 
@@ -109,12 +110,13 @@ export default function SolarCalculator(): React.ReactElement {
 						</FormField>
 
 						<FormField>
-							<Label htmlFor="region">Область</Label>
+							<Label id="region" htmlFor="region">Область</Label>
 							<Select
 								value={formData.region}
 								onChange={handleInputChange}
 								name="region"
 								options={regionOptions}
+								aria-labelledby="region"
 							/>
 						</FormField>
 					</form>
