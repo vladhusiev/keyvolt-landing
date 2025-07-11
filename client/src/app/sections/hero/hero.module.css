@@ -1,11 +1,22 @@
 .hero {
+  position: relative;
   padding: 0;
-  background: url("/images/hero.png") center/cover no-repeat;
   min-height: 900px;
   display: flex;
   flex-direction: column;
+}
+
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  object-fit: cover;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
+  z-index: -1;
 }
 
 .container {
@@ -51,14 +62,6 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
-}
-
-.heroImage {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
 }
 
 .featuresRow {
