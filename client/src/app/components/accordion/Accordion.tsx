@@ -23,12 +23,11 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 	useEffect(() => {
 		items.forEach(item => {
 			if (item.image) {
-				const optimizedUrl = getOptimizedImageUrl(
-					item.image,
-					1200,
-					453,
-					85
-				)
+				const optimizedUrl = getOptimizedImageUrl(item.image, {
+					width: 1200,
+					height: 453,
+					quality: 85
+				})
 				const img = new window.Image()
 				img.src = optimizedUrl
 			}
@@ -77,12 +76,11 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 							>
 								{item.image && (
 									<Image
-										src={getOptimizedImageUrl(
-											item.image,
-											1200,
-											453,
-											85
-										)}
+										src={getOptimizedImageUrl(item.image, {
+											width: 1200,
+											height: 453,
+											quality: 85
+										})}
 										alt={item.title}
 										width={1200}
 										height={453}
