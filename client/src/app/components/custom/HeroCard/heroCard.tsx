@@ -1,3 +1,4 @@
+import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import Image from 'next/image'
 import React from 'react'
 import styles from './heroCard.module.css'
@@ -8,11 +9,17 @@ interface HeroCardProps {
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({ icon, children }) => {
-	const url = new URL(icon, process.env.NEXT_PUBLIC_STRAPI_URL).toString()
+	const optimizedIconUrl = getOptimizedImageUrl(icon, 32, 32, 90)
+
 	return (
 		<div className={styles.card}>
 			<div className={styles.icon}>
-				<Image src={url} alt="icon" width={32} height={32} />
+				<Image
+					src={optimizedIconUrl}
+					alt="icon"
+					width={32}
+					height={32}
+				/>
 			</div>
 			<div className={styles.text}>{children}</div>
 		</div>

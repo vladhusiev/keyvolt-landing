@@ -2,6 +2,7 @@ import Accordion from '@/app/components/accordion/Accordion'
 import Container from '@/app/components/container/container'
 import Title from '@/app/components/custom/Title/title'
 import { CasesItem } from '@/app/hooks/useData'
+import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import styles from './cases.module.css'
 
 export default function Cases({
@@ -22,7 +23,12 @@ export default function Cases({
 				<Accordion
 					items={items.map(item => ({
 						title: item.title,
-						image: item.image.url,
+						image: getOptimizedImageUrl(
+							item.image.url,
+							1200,
+							453,
+							85
+						),
 						description: (
 							<>
 								<p>{item.description}</p>

@@ -1,5 +1,6 @@
 'use client'
 
+import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { ArrowIcon } from '../icons'
@@ -22,8 +23,14 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 	useEffect(() => {
 		items.forEach(item => {
 			if (item.image) {
+				const optimizedUrl = getOptimizedImageUrl(
+					item.image,
+					1200,
+					453,
+					85
+				)
 				const img = new window.Image()
-				img.src = item.image
+				img.src = optimizedUrl
 			}
 		})
 	}, [items])
@@ -70,12 +77,18 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 							>
 								{item.image && (
 									<Image
-										src={item.image}
+										src={getOptimizedImageUrl(
+											item.image,
+											1200,
+											453,
+											85
+										)}
 										alt={item.title}
 										width={1200}
 										height={453}
 										priority={false}
 										loading="eager"
+										quality={85}
 									/>
 								)}
 								<div

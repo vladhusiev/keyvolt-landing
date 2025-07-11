@@ -4,6 +4,7 @@ import Container from '@/app/components/container/container'
 import Button from '@/app/components/custom/Button/button'
 import Title from '@/app/components/custom/Title/title'
 import { SolutionsData } from '@/app/hooks/useData'
+import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import styles from './solutions.module.css'
@@ -24,8 +25,14 @@ const Solutions: React.FC<SolutionsProps> = ({ solutionsContent }) => {
 		if (solutions) {
 			solutions.forEach(solution => {
 				if (solution.image?.url) {
+					const optimizedUrl = getOptimizedImageUrl(
+						solution.image.url,
+						1200,
+						740,
+						85
+					)
 					const img = new window.Image()
-					img.src = solution.image.url
+					img.src = optimizedUrl
 				}
 			})
 		}
@@ -103,11 +110,16 @@ const Solutions: React.FC<SolutionsProps> = ({ solutionsContent }) => {
 							>
 								<div className={styles.imageWrap}>
 									<Image
-										src={active.image.url}
+										src={getOptimizedImageUrl(
+											active.image.url,
+											1200,
+											740,
+											85
+										)}
 										alt={active.name}
 										className={styles.image}
 										fill
-										quality={100}
+										quality={85}
 										priority={activeTab === 0}
 										loading={
 											activeTab === 0 ? 'eager' : 'lazy'
