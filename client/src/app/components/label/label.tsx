@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import styles from "./label.module.css";
 
-interface LabelProps {
+interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   className?: string;
   children: React.ReactNode;
   htmlFor: string;
