@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowIcon } from '../icons'
 import styles from './accordion.module.css'
 
@@ -17,6 +17,16 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ items }) => {
 	const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+	// Preload all images on component mount
+	useEffect(() => {
+		items.forEach(item => {
+			if (item.image) {
+				const img = new window.Image()
+				img.src = item.image
+			}
+		})
+	}, [items])
 
 	const toggleIndex = (index: number) => {
 		setOpenIndex(openIndex === index ? null : index)
@@ -64,6 +74,8 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 										alt={item.title}
 										width={1200}
 										height={453}
+										priority={false}
+										loading="eager"
 									/>
 								)}
 								<div

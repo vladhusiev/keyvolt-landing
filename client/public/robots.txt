@@ -1,7 +1,17 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
 Allow: /static/
 Allow: /_next/static/
+Allow: /images/
+Allow: /fonts/
 
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://keyvoltenergy.com.ua/sitemap.xml

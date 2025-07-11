@@ -75,11 +75,16 @@ export default function RootLayout({
 				/>
 
 				<link rel="dns-prefetch" href="https://maps.googleapis.com" />
+
+				{/* Google Search Console Verification */}
+				<meta
+					name="google-site-verification"
+					content="AE4eRsoV3GDKC3dSWd3bDyGiSlnkMfac9rW2TWEHEQQ"
+				/>
+
 				<GoogleTagManager />
 			</head>
-			<body>
-				{children}
-			</body>
+			<body>{children}</body>
 		</html>
 	)
 }
