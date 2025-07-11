@@ -68,7 +68,7 @@ export default function SolarCalculator(): React.ReactElement {
 						onSubmit={e => e.preventDefault()}
 					>
 						<FormField>
-							<Label htmlFor="power">
+							<Label id="power" htmlFor="power">
 								Потужність системи (кВт)
 							</Label>
 							<Input
@@ -80,6 +80,7 @@ export default function SolarCalculator(): React.ReactElement {
 								min={1}
 								max={1000000}
 								placeholder="Вкажіть потужність системи"
+								aria-labelledby="power"
 							/>
 						</FormField>
 						<FormField>
@@ -89,12 +90,13 @@ export default function SolarCalculator(): React.ReactElement {
 								onChange={handleInputChange}
 								name="place"
 								options={placeOptions}
+								id="place"
 								aria-labelledby="place"
 							/>
 						</FormField>
 
 						<FormField>
-							<Label htmlFor="tarif">
+							<Label id="tarif" htmlFor="tarif">
 								Тариф на електроенергію (грн/кВт⋅год)
 							</Label>
 							<Input
@@ -106,6 +108,7 @@ export default function SolarCalculator(): React.ReactElement {
 								min={0}
 								max={10000}
 								placeholder="Вкажіть тариф на електроенергію"
+								aria-labelledby="tarif"
 							/>
 						</FormField>
 
@@ -117,6 +120,7 @@ export default function SolarCalculator(): React.ReactElement {
 								name="region"
 								options={regionOptions}
 								aria-labelledby="region"
+								id="region"
 							/>
 						</FormField>
 					</form>

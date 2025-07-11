@@ -17,8 +17,8 @@ export const seoConfig = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   siteName: "KeyVolt Energy",
   author: "KeyVolt Team",
-  defaultOGImage: "/images/logo.svg",
-  defaultTwitterImage: "/images/logo.svg",
+  defaultOGImage: "/images/og-image.png",
+  defaultTwitterImage: "/images/og-image.png",
   logoUrl: "/images/logo.svg",
   organizationSchema: {
     "@type": "Organization",
