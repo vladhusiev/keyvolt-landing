@@ -27,9 +27,7 @@ const Solutions: React.FC<SolutionsProps> = ({ solutionsContent }) => {
 				if (solution.image?.url) {
 					const optimizedUrl = getOptimizedImageUrl(
 						solution.image.url,
-						1200,
-						740,
-						85
+						{ width: 1200, height: 740, quality: 85 }
 					)
 					const img = new window.Image()
 					img.src = optimizedUrl
@@ -112,9 +110,11 @@ const Solutions: React.FC<SolutionsProps> = ({ solutionsContent }) => {
 									<Image
 										src={getOptimizedImageUrl(
 											active.image.url,
-											1200,
-											740,
-											85
+											{
+												width: 1200,
+												height: 740,
+												quality: 85
+											}
 										)}
 										alt={active.name}
 										className={styles.image}

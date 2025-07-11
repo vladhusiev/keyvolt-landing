@@ -23,12 +23,11 @@ export default function Cases({
 				<Accordion
 					items={items.map(item => ({
 						title: item.title,
-						image: getOptimizedImageUrl(
-							item.image.url,
-							1200,
-							453,
-							85
-						),
+						image: getOptimizedImageUrl(item.image.url, {
+							width: 1200,
+							height: 453,
+							quality: 85
+						}),
 						description: (
 							<>
 								<p>{item.description}</p>

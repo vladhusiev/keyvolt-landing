@@ -39,7 +39,11 @@ const Hero: React.FC<HeroProps> = ({ heroContent }) => {
 					{features.map(f => (
 						<HeroCard
 							key={f.id}
-							icon={getOptimizedImageUrl(f.icon.url, 32, 32, 90)}
+							icon={getOptimizedImageUrl(f.icon.url, {
+								width: 32,
+								height: 32,
+								quality: 90
+							})}
 						>
 							{f.text}
 						</HeroCard>

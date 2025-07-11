@@ -10,12 +10,11 @@ const Preloader: React.FC = () => {
 				<div className={styles.preloader__logoContainer}>
 					<div className={styles.preloader__logo}>
 						<Image
-							src={getOptimizedImageUrl(
-								'/images/logo.svg',
-								230,
-								80,
-								90
-							)}
+							src={getOptimizedImageUrl('/images/logo.svg', {
+								width: 230,
+								height: 80,
+								quality: 90
+							})}
 							alt="KeyVolt Energy"
 							width={230}
 							height={80}

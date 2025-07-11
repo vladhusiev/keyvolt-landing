@@ -42,9 +42,7 @@ const Button: React.FC<ButtonProps> = ({
 					<Image
 						src={getOptimizedImageUrl(
 							'/images/icons/arrow-right.svg',
-							28,
-							28,
-							90
+							{ width: 28, height: 28, quality: 90 }
 						)}
 						alt="Arrow right"
 						width={28}

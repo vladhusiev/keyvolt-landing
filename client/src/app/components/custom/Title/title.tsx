@@ -19,12 +19,11 @@ const Title: React.FC<TitleProps> = ({
 			{decorator && (
 				<span className={styles.titleLine}>
 					<Image
-						src={getOptimizedImageUrl(
-							'/images/icons/zap.svg',
-							24,
-							24,
-							90
-						)}
+						src={getOptimizedImageUrl('/images/icons/zap.svg', {
+							width: 24,
+							height: 24,
+							quality: 90
+						})}
 						alt=""
 						width={24}
 						height={24}

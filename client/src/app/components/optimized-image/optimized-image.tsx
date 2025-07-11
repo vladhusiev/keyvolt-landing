@@ -1,16 +1,15 @@
-import {
-	getOptimizedImageUrl,
-	OptimizedImageProps
-} from '@/app/utlis/image-optimization'
+import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import Image from 'next/image'
 
-interface StrapiImageProps extends Omit<OptimizedImageProps, 'src'> {
+interface StrapiImageProps {
 	image: {
 		url: string
 		alternativeText?: string
 		width?: number
 		height?: number
 	}
+	width?: number
+	height?: number
 	sizes?: string
 	fill?: boolean
 	quality?: number
@@ -32,7 +31,11 @@ export const OptimizedImage: React.FC<StrapiImageProps> = ({
 		return null
 	}
 
-	const optimizedSrc = getOptimizedImageUrl(image.url, width, height, quality)
+	const optimizedSrc = getOptimizedImageUrl(image.url, {
+		width,
+		height,
+		quality
+	})
 
 	const imageProps = {
 		src: optimizedSrc,
@@ -43,12 +46,20 @@ export const OptimizedImage: React.FC<StrapiImageProps> = ({
 	}
 
 	if (fill) {
-		return <Image {...imageProps} fill style={{ objectFit: 'cover' }} />
+		return (
+			<Image
+				{...imageProps}
+				alt={imageProps.alt}
+				fill
+				style={{ objectFit: 'cover' }}
+			/>
+		)
 	}
 
 	return (
 		<Image
 			{...imageProps}
+			alt={imageProps.alt}
 			width={width || image.width || 800}
 			height={height || image.height || 600}
 		/>

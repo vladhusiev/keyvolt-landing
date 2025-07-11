@@ -14,12 +14,11 @@ const Footer: React.FC = () => {
 					<div className={styles.footer__logo}>
 						<Link href="/" className={styles.footer__logoImage}>
 							<Image
-								src={getOptimizedImageUrl(
-									'/images/logo.svg',
-									130,
-									50,
-									90
-								)}
+								src={getOptimizedImageUrl('/images/logo.svg', {
+									width: 130,
+									height: 50,
+									quality: 90
+								})}
 								alt="logo"
 								width={130}
 								height={50}

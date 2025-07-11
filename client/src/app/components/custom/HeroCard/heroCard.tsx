@@ -9,7 +9,11 @@ interface HeroCardProps {
 }
 
 const HeroCard: React.FC<HeroCardProps> = ({ icon, children }) => {
-	const optimizedIconUrl = getOptimizedImageUrl(icon, 32, 32, 90)
+	const optimizedIconUrl = getOptimizedImageUrl(icon, {
+		width: 32,
+		height: 32,
+		quality: 90
+	})
 
 	return (
 		<div className={styles.card}>

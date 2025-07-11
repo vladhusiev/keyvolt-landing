@@ -32,12 +32,11 @@ const Navbar: React.FC = () => {
 			<div className={styles.container}>
 				<div className={styles.logo}>
 					<Image
-						src={getOptimizedImageUrl(
-							'/images/logo.svg',
-							120,
-							40,
-							90
-						)}
+						src={getOptimizedImageUrl('/images/logo.svg', {
+							width: 120,
+							height: 40,
+							quality: 90
+						})}
 						alt="KeyVolt"
 						className={styles.logoImage}
 						width={120}
