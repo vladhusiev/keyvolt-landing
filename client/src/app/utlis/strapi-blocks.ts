@@ -15,7 +15,26 @@ interface SlateChild {
   text?: string;
   type?: string;
   children?: SlateChild[];
+  bold?: boolean;
+  italic?: boolean;
+  underline?: boolean;
   [key: string]: unknown;
+}
+
+function processTextFormatting(child: SlateChild): string {
+  let text = child.text || '';
+  
+  if (child.bold) {
+    text = `<strong>${text}</strong>`;
+  }
+  if (child.italic) {
+    text = `<em>${text}</em>`;
+  }
+  if (child.underline) {
+    text = `<u>${text}</u>`;
+  }
+  
+  return text;
 }
 
 export function blocksToHtml(blocks: StrapiBlock[]): string {
@@ -64,7 +83,7 @@ export function slateToHtml(nodes: SlateNode[]): string {
         const text = children
           .map(child => {
             if (child.text) {
-              return child.text;
+              return processTextFormatting(child);
             }
             if (child.children) {
               return slateToHtml(child.children as SlateNode[]);
@@ -83,10 +102,26 @@ export function slateToHtml(nodes: SlateNode[]): string {
           currentListItems = '';
         }
         
+        // Обрабатываем элементы списка напрямую, без рекурсии
         const listChildren = node.children as SlateNode[];
         const listItems = listChildren
-          .map(child => slateToHtml([child]))
+          .map(child => {
+            if (child.type === 'list-item') {
+              const itemChildren = child.children as SlateChild[];
+              const itemText = itemChildren
+                .map(itemChild => {
+                  if (itemChild.text) {
+                    return processTextFormatting(itemChild);
+                  }
+                  return '';
+                })
+                .join('');
+              return `<li>${itemText}</li>`;
+            }
+            return '';
+          })
           .join('');
+        
         const format = node.format;
         const listTag = format === 'ordered' ? 'ol' : 'ul';
         result += `<${listTag}>${listItems}</${listTag}>`;
@@ -97,10 +132,7 @@ export function slateToHtml(nodes: SlateNode[]): string {
         const itemText = itemChildren
           .map(child => {
             if (child.text) {
-              return child.text;
-            }
-            if (child.children) {
-              return slateToHtml(child.children as SlateNode[]);
+              return processTextFormatting(child);
             }
             return '';
           })
@@ -111,7 +143,21 @@ export function slateToHtml(nodes: SlateNode[]): string {
       case 'bulleted-list':
         const bulletChildren = node.children as SlateNode[];
         const bulletItems = bulletChildren
-          .map(child => slateToHtml([child]))
+          .map(child => {
+            if (child.type === 'list-item') {
+              const itemChildren = child.children as SlateChild[];
+              const itemText = itemChildren
+                .map(itemChild => {
+                  if (itemChild.text) {
+                    return processTextFormatting(itemChild);
+                  }
+                  return '';
+                })
+                .join('');
+              return `<li>${itemText}</li>`;
+            }
+            return '';
+          })
           .join('');
         result += `<ul>${bulletItems}</ul>`;
         break;
@@ -119,7 +165,21 @@ export function slateToHtml(nodes: SlateNode[]): string {
       case 'numbered-list':
         const numberedChildren = node.children as SlateNode[];
         const numberedItems = numberedChildren
-          .map(child => slateToHtml([child]))
+          .map(child => {
+            if (child.type === 'list-item') {
+              const itemChildren = child.children as SlateChild[];
+              const itemText = itemChildren
+                .map(itemChild => {
+                  if (itemChild.text) {
+                    return processTextFormatting(itemChild);
+                  }
+                  return '';
+                })
+                .join('');
+              return `<li>${itemText}</li>`;
+            }
+            return '';
+          })
           .join('');
         result += `<ol>${numberedItems}</ol>`;
         break;
