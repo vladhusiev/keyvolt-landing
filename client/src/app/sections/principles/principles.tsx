@@ -1,6 +1,11 @@
 import Title from '@/app/components/custom/Title/title'
 import { PrinciplesItem } from '@/app/hooks/useData'
-import { blocksToHtml, isStrapiBlocks } from '@/app/utlis/strapi-blocks'
+import {
+	blocksToHtml,
+	isSlateNodes,
+	isStrapiBlocks,
+	slateToHtml
+} from '@/app/utlis/strapi-blocks'
 import styles from './principles.module.css'
 
 const Principles = ({
@@ -12,6 +17,9 @@ const Principles = ({
 	console.log('Principles items:', JSON.stringify(items, null, 2))
 
 	const getDescriptionHtml = (description: unknown): string => {
+		if (isSlateNodes(description)) {
+			return slateToHtml(description)
+		}
 		if (isStrapiBlocks(description)) {
 			return blocksToHtml(description)
 		}
