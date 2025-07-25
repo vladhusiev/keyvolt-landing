@@ -43,9 +43,23 @@ export function slateToHtml(nodes: SlateNode[]): string {
     return '';
   }
 
-  return nodes.map(node => {
+  let result = '';
+  let currentListItems = '';
+  let currentListType = '';
+
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+    
     switch (node.type) {
       case 'paragraph':
+        // Если у нас есть накопленные элементы списка, сначала выводим их
+        if (currentListItems) {
+          const listTag = currentListType === 'ordered' ? 'ol' : 'ul';
+          result += `<${listTag}>${currentListItems}</${listTag}>`;
+          currentListItems = '';
+          currentListType = '';
+        }
+        
         const children = node.children as SlateChild[];
         const text = children
           .map(child => {
@@ -58,19 +72,25 @@ export function slateToHtml(nodes: SlateNode[]): string {
             return '';
           })
           .join('');
-        return `<p>${text}</p>`;
+        result += `<p>${text}</p>`;
+        break;
       
       case 'list':
+        // Если у нас есть накопленные элементы списка, сначала выводим их
+        if (currentListItems) {
+          const listTag = currentListType === 'ordered' ? 'ol' : 'ul';
+          result += `<${listTag}>${currentListItems}</${listTag}>`;
+          currentListItems = '';
+        }
+        
         const listChildren = node.children as SlateNode[];
         const listItems = listChildren
           .map(child => slateToHtml([child]))
           .join('');
         const format = node.format;
-        if (format === 'ordered') {
-          return `<ol>${listItems}</ol>`;
-        } else {
-          return `<ul>${listItems}</ul>`;
-        }
+        const listTag = format === 'ordered' ? 'ol' : 'ul';
+        result += `<${listTag}>${listItems}</${listTag}>`;
+        break;
       
       case 'list-item':
         const itemChildren = node.children as SlateChild[];
@@ -85,26 +105,37 @@ export function slateToHtml(nodes: SlateNode[]): string {
             return '';
           })
           .join('');
-        return `<li>${itemText}</li>`;
+        currentListItems += `<li>${itemText}</li>`;
+        break;
       
       case 'bulleted-list':
         const bulletChildren = node.children as SlateNode[];
         const bulletItems = bulletChildren
           .map(child => slateToHtml([child]))
           .join('');
-        return `<ul>${bulletItems}</ul>`;
+        result += `<ul>${bulletItems}</ul>`;
+        break;
       
       case 'numbered-list':
         const numberedChildren = node.children as SlateNode[];
         const numberedItems = numberedChildren
           .map(child => slateToHtml([child]))
           .join('');
-        return `<ol>${numberedItems}</ol>`;
+        result += `<ol>${numberedItems}</ol>`;
+        break;
       
       default:
-        return '';
+        break;
     }
-  }).join('');
+  }
+
+  // Если остались накопленные элементы списка, выводим их
+  if (currentListItems) {
+    const listTag = currentListType === 'ordered' ? 'ol' : 'ul';
+    result += `<${listTag}>${currentListItems}</${listTag}>`;
+  }
+
+  return result;
 }
 
 export function isStrapiBlocks(value: unknown): value is StrapiBlock[] {
