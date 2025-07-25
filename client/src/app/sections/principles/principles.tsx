@@ -8,7 +8,7 @@ const Principles = ({
 	principlesContent: { principles_title: string; items: PrinciplesItem[] }
 }) => {
 	const { principles_title, items } = principlesContent
-
+	console.log(items)
 	return (
 		<section className={styles.principles} id="how-it-works">
 			<div className={styles.container}>
@@ -22,9 +22,9 @@ const Principles = ({
 								</span>{' '}
 								{card.title}
 							</div>
-							<div className={styles.cardText}>
+							{/* <div className={styles.cardText}>
 								{card.description}
-							</div>
+							</div> */}
 						</div>
 					))}
 				</div>
