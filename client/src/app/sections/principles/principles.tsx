@@ -38,9 +38,13 @@ const Principles = ({
 								{card.title}
 							</div>
 							<div className={styles.cardText}>
-								{renderSlateToHtml(
-									card.description as SlateNode[]
-								)}
+								<div
+									dangerouslySetInnerHTML={{
+										__html: renderSlateToHtml(
+											card.description as SlateNode[]
+										)
+									}}
+								/>
 							</div>
 						</div>
 					))}
