@@ -58,6 +58,10 @@
 	color: rgba(255, 255, 255, 0.8);
 }
 
+.cardText li {
+	list-style: disc;
+}
+
 @media (max-width: 1000px) {
 	.principles {
 		padding: 60px 0;
