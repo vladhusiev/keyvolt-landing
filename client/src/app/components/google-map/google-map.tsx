@@ -89,7 +89,7 @@ const GoogleMap: React.FC<GoogleMapProps> = ({
 			}
 			mapInstanceRef.current = null
 		}
-	}, [center.lat, center.lng, zoom])
+	}, [center, zoom])
 
 	useEffect(() => {
 		if (mapInstanceRef.current && !isLoading) {
