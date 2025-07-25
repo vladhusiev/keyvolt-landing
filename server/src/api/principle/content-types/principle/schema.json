@@ -4,7 +4,8 @@
   "info": {
     "singularName": "principle",
     "pluralName": "principles",
-    "displayName": "Principle"
+    "displayName": "Principle",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,7 +15,7 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "blocks"
     }
   }
 }
