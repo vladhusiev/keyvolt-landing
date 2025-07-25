@@ -41,7 +41,7 @@ const Principles = ({
 								<div
 									dangerouslySetInnerHTML={{
 										__html: renderSlateToHtml(
-											card.description as SlateNode[]
+											card.description as unknown as SlateNode[]
 										)
 									}}
 								/>

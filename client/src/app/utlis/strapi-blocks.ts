@@ -1,4 +1,4 @@
-type SlateNode = {
+export type SlateNode = {
   type?: string
   format?: string
   children?: SlateNode[]
