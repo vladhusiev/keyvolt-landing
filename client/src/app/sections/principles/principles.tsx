@@ -1,5 +1,6 @@
 import Title from '@/app/components/custom/Title/title'
 import { PrinciplesItem } from '@/app/hooks/useData'
+import { blocksToHtml, isStrapiBlocks } from '@/app/utlis/strapi-blocks'
 import styles from './principles.module.css'
 
 const Principles = ({
@@ -8,7 +9,18 @@ const Principles = ({
 	principlesContent: { principles_title: string; items: PrinciplesItem[] }
 }) => {
 	const { principles_title, items } = principlesContent
-	console.log(items)
+	console.log('Principles items:', JSON.stringify(items, null, 2))
+
+	const getDescriptionHtml = (description: unknown): string => {
+		if (isStrapiBlocks(description)) {
+			return blocksToHtml(description)
+		}
+		if (typeof description === 'string') {
+			return description
+		}
+		return ''
+	}
+
 	return (
 		<section className={styles.principles} id="how-it-works">
 			<div className={styles.container}>
@@ -22,13 +34,12 @@ const Principles = ({
 								</span>{' '}
 								{card.title}
 							</div>
-							{/* <div className={styles.cardText}>
-								{card.description}
-							</div> */}
 							<div className={styles.cardText}>
 								<div
 									dangerouslySetInnerHTML={{
-										__html: card.description
+										__html: getDescriptionHtml(
+											card.description
+										)
 									}}
 								/>
 							</div>

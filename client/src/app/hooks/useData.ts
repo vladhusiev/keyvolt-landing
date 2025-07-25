@@ -21,7 +21,7 @@ export interface HeroData {
 export interface PrinciplesItem {
   id: number;
   title: string;
-  description: string;
+  description: unknown; // Strapi blocks type
 }
 
 export interface CasesItem {
