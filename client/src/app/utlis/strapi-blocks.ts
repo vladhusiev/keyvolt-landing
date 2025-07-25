@@ -7,6 +7,7 @@ interface StrapiBlock {
 interface SlateNode {
   type: string;
   children: SlateChild[];
+  format?: string;
   [key: string]: unknown;
 }
 
@@ -59,17 +60,32 @@ export function slateToHtml(nodes: SlateNode[]): string {
           .join('');
         return `<p>${text}</p>`;
       
+      case 'list':
+        const listChildren = node.children as SlateNode[];
+        const listItems = listChildren
+          .map(child => slateToHtml([child]))
+          .join('');
+        const format = node.format;
+        if (format === 'ordered') {
+          return `<ol>${listItems}</ol>`;
+        } else {
+          return `<ul>${listItems}</ul>`;
+        }
+      
       case 'list-item':
-        const listChildren = node.children as SlateChild[];
-        const listText = listChildren
+        const itemChildren = node.children as SlateChild[];
+        const itemText = itemChildren
           .map(child => {
             if (child.text) {
               return child.text;
             }
+            if (child.children) {
+              return slateToHtml(child.children as SlateNode[]);
+            }
             return '';
           })
           .join('');
-        return `<li>${listText}</li>`;
+        return `<li>${itemText}</li>`;
       
       case 'bulleted-list':
         const bulletChildren = node.children as SlateNode[];
