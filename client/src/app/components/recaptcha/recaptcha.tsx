@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styles from './recaptcha.module.css'
 
 interface ReCaptchaProps {
@@ -72,7 +72,7 @@ const ReCaptcha: React.FC<ReCaptchaProps> = ({
 		}
 	}, [siteKey])
 
-	const executeReCaptcha = async () => {
+	const executeReCaptcha = useCallback(async () => {
 		if (!window.grecaptcha || !siteKey) {
 			setError('reCAPTCHA not initialized')
 			return null
@@ -93,7 +93,7 @@ const ReCaptcha: React.FC<ReCaptchaProps> = ({
 		} finally {
 			setIsLoading(false)
 		}
-	}
+	}, [siteKey, action, onChange])
 
 	// Export execute function for form usage
 	useEffect(() => {
@@ -104,7 +104,7 @@ const ReCaptcha: React.FC<ReCaptchaProps> = ({
 				}
 			).executeReCaptcha = executeReCaptcha
 		}
-	}, [siteKey, action])
+	}, [executeReCaptcha])
 
 	if (!siteKey) {
 		return (
