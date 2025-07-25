@@ -25,6 +25,13 @@ const Principles = ({
 							{/* <div className={styles.cardText}>
 								{card.description}
 							</div> */}
+							<div className={styles.cardText}>
+								<div
+									dangerouslySetInnerHTML={{
+										__html: card.description
+									}}
+								/>
+							</div>
 						</div>
 					))}
 				</div>
