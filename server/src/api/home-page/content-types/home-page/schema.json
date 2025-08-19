@@ -60,6 +60,11 @@
     },
     "about_description": {
       "type": "text"
+    },
+    "vacancies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::vacancy.vacancy"
     }
   }
 }

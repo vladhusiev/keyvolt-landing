@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "vacancies",
+  "info": {
+    "singularName": "vacancy",
+    "pluralName": "vacancies",
+    "displayName": "Vacancy"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "Salary": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "full_description": {
+      "type": "blocks"
+    },
+    "location": {
+      "type": "string"
+    },
+    "full_employment": {
+      "type": "boolean"
+    },
+    "vacancy_link": {
+      "type": "string"
+    }
+  }
+}

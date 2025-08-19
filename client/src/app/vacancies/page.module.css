@@ -1,0 +1,267 @@
+.vacanciesMain {
+	min-height: 100vh;
+}
+
+.heroSection {
+	padding: 0 0 80px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	text-align: center;
+	position: relative;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	overflow: hidden;
+}
+
+.heroImage {
+	object-fit: cover;
+	z-index: 1;
+}
+
+.heroSection::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 2;
+}
+
+/* Стили для навигации в hero секции */
+.heroSection :global(.navbar) {
+	position: relative;
+	z-index: 3;
+}
+
+.heroContent {
+	max-width: 800px;
+	margin: 120px auto 0;
+	position: relative;
+	z-index: 3;
+}
+
+.heroTitle {
+	color: #fff;
+	position: relative;
+	z-index: 3;
+}
+
+.heroDescription {
+	font-size: 1.25rem;
+	line-height: 1.6;
+	color: #f5f5f5;
+	margin-top: 1.5rem;
+	font-weight: 500;
+}
+
+.vacanciesSection {
+	padding: 80px 0;
+}
+
+.sectionTitle {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #fff;
+	margin-bottom: 1rem;
+}
+
+.sectionDescription {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	color: #f5f5f5;
+	max-width: 600px;
+	margin-top: 1.5rem;
+}
+
+.vacanciesGrid {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	margin-top: 3rem;
+}
+
+.noVacancies {
+	text-align: center;
+	padding: 4rem 2rem;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.05) 100%
+	);
+	border-radius: 20px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.noVacanciesIcon {
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+.noVacanciesIcon svg {
+	filter: drop-shadow(0 4px 8px rgba(238, 189, 0, 0.3));
+}
+
+.noVacanciesTitle {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #ffffff;
+	margin-bottom: 1.5rem;
+	line-height: 1.3;
+}
+
+.noVacanciesDescription {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	color: #f5f5f5;
+	margin-bottom: 2.5rem;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.noVacanciesActions {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.noVacanciesButton {
+	display: inline-block;
+	padding: 1rem 2rem;
+	background: linear-gradient(135deg, #eebd00 0%, #f4d03f 100%);
+	color: #2c3e50;
+	text-decoration: none;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 1.125rem;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 12px rgba(238, 189, 0, 3);
+	border: none;
+	cursor: pointer;
+}
+
+.noVacanciesButton:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(238, 189, 0, 4);
+	color: #2c3e50;
+}
+
+.noVacanciesSecondaryButton {
+	display: inline-block;
+	padding: 1rem 2rem;
+	background: transparent;
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: 12px;
+	font-weight: 600;
+	font-size: 1.125rem;
+	transition: all 0.3s ease;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	cursor: pointer;
+}
+
+.noVacanciesSecondaryButton:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.5);
+	transform: translateY(-2px);
+}
+
+.contactSection {
+	padding: 80px 0;
+	background: #ffffff;
+}
+
+.contactContent {
+	text-align: center;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.contactTitle {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #2c3e50;
+	margin-bottom: 1rem;
+}
+
+.contactDescription {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	color: #6c757d;
+	margin-bottom: 2rem;
+}
+
+.contactButton {
+	display: inline-block;
+	padding: 1rem 2rem;
+	background: linear-gradient(135deg, #eebd00 0%, #f4d03f 100%);
+	color: #2c3e50;
+	text-decoration: none;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 1.125rem;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(238, 189, 0, 0.2);
+}
+
+.contactButton:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 12px rgba(238, 189, 0, 3);
+	color: #2c3e50;
+}
+
+.contactButton:active {
+	transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+	.heroSection {
+		padding: 100px 0 60px;
+	}
+
+	.heroDescription {
+		font-size: 1.125rem;
+	}
+
+	.sectionTitle {
+		font-size: 2rem;
+	}
+
+	.vacanciesGrid {
+		gap: 1rem;
+	}
+
+	.contactTitle {
+		font-size: 1.75rem;
+	}
+
+	.noVacancies {
+		padding: 3rem 1.5rem;
+		margin: 0 1rem;
+	}
+
+	.noVacanciesTitle {
+		font-size: 1.75rem;
+	}
+
+	.noVacanciesActions {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.noVacanciesButton,
+	.noVacanciesSecondaryButton {
+		width: 100%;
+		max-width: 280px;
+		text-align: center;
+	}
+}

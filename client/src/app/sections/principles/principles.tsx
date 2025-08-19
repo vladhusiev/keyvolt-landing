@@ -9,20 +9,6 @@ const Principles = ({
 	principlesContent: { principles_title: string; items: PrinciplesItem[] }
 }) => {
 	const { principles_title, items } = principlesContent
-	console.log('Principles items:', JSON.stringify(items, null, 2))
-
-	// const getDescriptionHtml = (description: unknown): string => {
-	// 	if (isSlateNodes(description)) {
-	// 		return slateToHtml(description)
-	// 	}
-	// 	if (isStrapiBlocks(description)) {
-	// 		return blocksToHtml(description)
-	// 	}
-	// 	if (typeof description === 'string') {
-	// 		return description
-	// 	}
-	// 	return ''
-	// }
 
 	return (
 		<section className={styles.principles} id="how-it-works">
