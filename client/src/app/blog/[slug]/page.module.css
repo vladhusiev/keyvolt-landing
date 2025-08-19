@@ -1,0 +1,42 @@
+.postArticle {
+  padding-block: 120px;
+}
+
+.postArticleHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 42px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.postArticleTitle {
+  margin: 0;
+}
+
+.postArticleDescription {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.postArticleDate {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.postArticleCover {
+  position: relative;
+  max-width: 1024px;
+  object-fit: cover;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 42px auto;
+}
+
+.postArticleContent {
+  max-width: 800px;
+  margin: 0 auto;
+}

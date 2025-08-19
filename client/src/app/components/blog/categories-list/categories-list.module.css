@@ -1,0 +1,25 @@
+.blogCategories {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.blogCategoryItem {
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--primary-color);
+  }
+}
+
+.blogCategoryItemActive {
+  color: var(--text-primary);
+  background: var(--primary-color);
+}

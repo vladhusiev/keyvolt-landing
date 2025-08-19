@@ -3,6 +3,8 @@
  * Provides functions to generate optimized image URLs with various parameters
  */
 
+import { getStrapiMedia } from './get-strapi-url'
+
 export interface ImageOptimizationParams {
   width?: number
   height?: number
@@ -31,18 +33,18 @@ export function getOptimizedImageUrl(
     return ''
   }
 
-  // If this is a local image (starts with /)
-  if (imageUrl.startsWith('/')) {
-    return imageUrl // Return as is for local files
+  // If this is a local public image (starts with / and not a Strapi upload)
+  if (imageUrl.startsWith('/') && !imageUrl.startsWith('/uploads')) {
+    return imageUrl // Return as is for local public files
   }
 
-  // If this is already a full URL
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    return imageUrl
+  // Get full URL for Strapi media
+  const fullUrl = getStrapiMedia(imageUrl)
+  
+  // If no optimization parameters, return the full URL
+  if (Object.keys(params).length === 0) {
+    return fullUrl
   }
-
-  // Base Strapi URL
-  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
 
   // If there are optimization parameters
   const queryParams = new URLSearchParams()
@@ -61,9 +63,9 @@ export function getOptimizedImageUrl(
   if (params.rotate) queryParams.append('rotate', params.rotate.toString())
 
   const queryString = queryParams.toString()
-  const separator = imageUrl.includes('?') ? '&' : '?'
+  const separator = fullUrl.includes('?') ? '&' : '?'
   
-  return `${strapiUrl}${imageUrl}${queryString ? separator + queryString : ''}`
+  return `${fullUrl}${queryString ? separator + queryString : ''}`
 }
 
 /**
@@ -111,8 +113,8 @@ export function getImageSrcSet(
 export function getSimpleOptimizedUrl(imageUrl: string | null | undefined): string {
   if (!imageUrl) return ''
   
-  // For local images return as is
-  if (imageUrl.startsWith('/')) {
+  // For local public images (not Strapi uploads) return as is
+  if (imageUrl.startsWith('/') && !imageUrl.startsWith('/uploads')) {
     return imageUrl
   }
   

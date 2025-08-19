@@ -1,10 +1,17 @@
-import { CasesItem, Data, HeroData, PrinciplesItem, SolutionsData } from "../types/data";
+import {
+  CasesItem,
+  Data,
+  HeroData,
+  PrinciplesItem,
+  SolutionsData,
+} from "../types/data";
 
 export const getServerData = async (): Promise<Data> => {
   try {
     const path =
       "/api/home-page?populate[features][populate]=icon&populate[solutions][populate]=image&populate[principles][populate]&populate[cases][populate]=image";
-    const BASE_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const BASE_URL =
+      process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
     const url = new URL(path, BASE_URL);
 
     const response = await fetch(url.href);

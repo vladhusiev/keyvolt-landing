@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.pageLink {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #1f1f1f;
+  background: #0c0c0c;
+  color: #eaeaea;
+}
+
+.pageLinkActive {
+  background: #eebd00;
+  color: #0c0c0c;
+  border-color: #eebd00;
+}
+
+

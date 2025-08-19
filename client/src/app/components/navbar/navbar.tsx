@@ -4,33 +4,40 @@ import { getOptimizedImageUrl } from '@/app/utlis/image-optimization'
 import { menuItems } from '@/app/utlis/menu-items'
 import Image from 'next/image'
 import React, { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import Button from '../custom/Button/button'
 import styles from './navbar.module.css'
+import Link from 'next/link'
 
 const Navbar: React.FC = () => {
-	const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const pathname = usePathname()
+    const router = useRouter()
 
 	const toggleMenu = () => {
 		setIsMenuOpen(!isMenuOpen)
 	}
 
-	const handleMenuItemClick = (
-		e: React.MouseEvent<HTMLAnchorElement>,
-		href: string
-	) => {
-		e.preventDefault()
-		const id = href.replace('#', '')
-		const el = document.getElementById(id)
-		if (el) {
-			el.scrollIntoView({ behavior: 'smooth' })
-		}
-		setIsMenuOpen(false)
-	}
+    const handleMenuItemClick = (
+        e: React.MouseEvent<HTMLAnchorElement>,
+        hashHref: string
+    ) => {
+        const onHomePage = pathname === '/'
+        if (onHomePage) {
+            e.preventDefault()
+            const id = hashHref.replace('#', '')
+            const el = document.getElementById(id)
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' })
+            }
+        }
+        setIsMenuOpen(false)
+    }
 
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.container}>
-				<div className={styles.logo}>
+				<Link href="/" className={styles.logo}>
 					<Image
 						src={getOptimizedImageUrl('/images/logo.svg', {
 							width: 120,
@@ -43,7 +50,7 @@ const Navbar: React.FC = () => {
 						height={40}
 						priority
 					/>
-				</div>
+				</Link>
 
 				<button
 					className={`${styles.menuButton} ${
@@ -63,19 +70,20 @@ const Navbar: React.FC = () => {
 					}`}
 				>
 					<ul className={styles.menuList}>
-						{menuItems.map(item => (
-							<li key={item.id} className={styles.menuItem}>
-								<a
-									href={item.href}
-									className={styles.menuLink}
-									onClick={e =>
-										handleMenuItemClick(e, item.href)
-									}
-								>
-									{item.label}
-								</a>
-							</li>
-						))}
+                        {menuItems.map(item => {
+                            const targetHref = pathname === '/' ? item.href : `/${item.href}`
+                            return (
+                                <li key={item.id} className={styles.menuItem}>
+                                    <Link
+                                        href={targetHref}
+                                        className={styles.menuLink}
+                                        onClick={e => handleMenuItemClick(e, item.href)}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            )
+                        })}
 					</ul>
 				</div>
 				<Button
@@ -85,6 +93,8 @@ const Navbar: React.FC = () => {
 						const el = document.getElementById('contacts')
 						if (el) {
 							el.scrollIntoView({ behavior: 'smooth' })
+                        } else {
+                            router.push('/#contacts')
 						}
 					}}
 				>
