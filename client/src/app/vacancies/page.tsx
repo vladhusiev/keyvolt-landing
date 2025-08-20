@@ -1,3 +1,4 @@
+import { getServerData } from '@/app/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import Container from '../components/container/container'
@@ -5,7 +6,6 @@ import Title from '../components/custom/Title/title'
 import Navbar from '../components/navbar/navbar'
 import Footer from '../sections/footer/footer'
 import VacancyCard from './components/vacancy-card/vacancy-card'
-import { getVacancies } from './lib/vacancies-data'
 import styles from './page.module.css'
 
 export const metadata = {
@@ -15,7 +15,7 @@ export const metadata = {
 }
 
 export default async function VacanciesPage() {
-	const vacancies = await getVacancies()
+	const { vacanciesData } = await getServerData()
 
 	return (
 		<main className={styles.vacanciesMain}>
@@ -45,7 +45,7 @@ export default async function VacanciesPage() {
 
 			<section className={styles.vacanciesSection}>
 				<Container>
-					{vacancies.length > 0 && (
+					{vacanciesData.length > 0 && (
 						<div className={styles.vacanciesHeader}>
 							<Title>Відкриті позиції</Title>
 							<p className={styles.sectionDescription}>
@@ -56,9 +56,9 @@ export default async function VacanciesPage() {
 						</div>
 					)}
 
-					{vacancies.length > 0 ? (
+					{vacanciesData.length > 0 ? (
 						<div className={styles.vacanciesGrid}>
-							{vacancies.map(vacancy => (
+							{vacanciesData.map(vacancy => (
 								<VacancyCard
 									key={vacancy.id}
 									vacancy={vacancy}

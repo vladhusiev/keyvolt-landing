@@ -1,16 +1,17 @@
 'use client'
 
+import { VacanciesData } from '@/app/types/data'
+import { renderSlateToHtml, SlateNode } from '@/app/utlis/strapi-blocks'
 import React, { useState } from 'react'
-import { Vacancy } from '../../types/vacancy'
 import styles from './vacancy-card.module.css'
 
 interface VacancyCardProps {
-	vacancy: Vacancy
+	vacancy: VacanciesData
 }
 
 const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
-
+	console.log(vacancy)
 	const toggleExpanded = () => {
 		setIsExpanded(!isExpanded)
 	}
@@ -20,8 +21,8 @@ const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
 			<div className={styles.cardHeader}>
 				<div className={styles.titleSection}>
 					<h3 className={styles.jobTitle}>{vacancy.title}</h3>
-					{vacancy.salary && (
-						<div className={styles.salary}>{vacancy.salary}</div>
+					{vacancy.Salary && (
+						<div className={styles.salary}>{vacancy.Salary}</div>
 					)}
 				</div>
 				<button
@@ -54,9 +55,11 @@ const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
 			<div className={styles.cardBody}>
 				<div className={styles.companyInfo}>
 					<div className={styles.tags}>
-						{vacancy.type && (
+						{vacancy.full_employment && (
 							<span className={`${styles.tag} ${styles.typeTag}`}>
-								{vacancy.type}
+								{vacancy.full_employment
+									? 'Повна зайнятість'
+									: 'Часткова зайнятість'}
 							</span>
 						)}
 						{vacancy.location && (
@@ -69,14 +72,23 @@ const VacancyCard: React.FC<VacancyCardProps> = ({ vacancy }) => {
 					</div>
 				</div>
 
-				<p className={styles.description}>{vacancy.shortDescription}</p>
+				<p className={styles.description}>
+					{vacancy.short_description}
+				</p>
 
 				{isExpanded && (
 					<div className={styles.expandedContent}>
-						123
+						<p
+							dangerouslySetInnerHTML={{
+								__html: renderSlateToHtml(
+									vacancy.full_description as unknown as SlateNode[]
+								)
+							}}
+						/>
 						<div className={styles.applySection}>
 							<a
-								href={`mailto:hr@keyvolt.energy?subject=Відгук на вакансію: ${vacancy.title}`}
+								target="_blank"
+								href={vacancy.vacancy_link}
 								className={styles.applyButton}
 							>
 								Відгукнутися

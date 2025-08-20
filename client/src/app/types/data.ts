@@ -50,4 +50,17 @@ export interface Data {
   principlesData: PrinciplesData;
   casesData: CasesData;
   aboutData: AboutData;
+  vacanciesData: VacanciesData[];
+}
+
+export interface VacanciesData {
+  id: number;
+  documentId: string
+  title: string;
+  Salary: string;
+  short_description: string;
+  full_description: string;
+  location: string;
+  full_employment: string;
+  vacancy_link: string;
 }

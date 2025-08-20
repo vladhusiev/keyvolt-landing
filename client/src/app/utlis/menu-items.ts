@@ -10,5 +10,5 @@ export const menuItems: MenuItem[] = [
   { id: "economics", label: "Економіка", href: "#economics" },
   { id: "cases", label: "Кейси", href: "#cases" },
   { id: "about", label: "Про Нас", href: "#about" },
-  // { id: "vacancies", label: "Вакансії", href: "/vacancies" },
+  { id: "vacancies", label: "Вакансії", href: "/vacancies" },
 ];

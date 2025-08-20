@@ -4,18 +4,19 @@ import {
   HeroData,
   PrinciplesItem,
   SolutionsData,
+  VacanciesData,
 } from "../types/data";
 
 export const getServerData = async (): Promise<Data> => {
   try {
     const path =
-      "/api/home-page?populate[features][populate]=icon&populate[solutions][populate]=image&populate[principles][populate]&populate[cases][populate]=image";
+      "/api/home-page?populate[features][populate]=icon&populate[solutions][populate]=image&populate[principles][populate]&populate[cases][populate]=image&populate[vacancies][populate]";
     const BASE_URL =
       process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
     const url = new URL(path, BASE_URL);
 
     const response = await fetch(url.href);
-
+  
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -60,12 +61,15 @@ export const getServerData = async (): Promise<Data> => {
       about_description: data?.about_description || "",
     };
 
+    const vacanciesData: VacanciesData[] = data?.vacancies || [];
+
     return {
       heroData,
       solutionsData,
       principlesData,
       casesData,
       aboutData,
+      vacanciesData,
     };
   } catch {
     throw new Error("Failed to fetch data");
