@@ -33,7 +33,11 @@ const Title: React.FC<TitleProps> = ({
           />
         </span>
       )}
-      {React.createElement(tag, { className: clsx(styles.title, className) }, children)}
+      {React.createElement(
+        tag,
+        { className: clsx(styles.title, styles[`title__${tag}`], className) },
+        children
+      )}
     </div>
   );
 };

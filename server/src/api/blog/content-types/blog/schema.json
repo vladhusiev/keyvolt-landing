@@ -23,9 +23,6 @@
       "type": "uid",
       "targetField": "title"
     },
-    "content": {
-      "type": "richtext"
-    },
     "thumbnail": {
       "type": "media",
       "multiple": false,
@@ -40,13 +37,18 @@
       "relation": "oneToOne",
       "target": "api::category.category"
     },
-    "featuredArticles": {
-      "type": "component",
-      "repeatable": false,
-      "component": "blocks.featured-articles"
+    "content": {
+      "type": "customField",
+      "options": {
+        "preset": "defaultHtml"
+      },
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true
     },
-    "text": {
-      "type": "blocks"
+    "relatedArticles": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog.blog"
     }
   }
 }

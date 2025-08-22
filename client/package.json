@@ -12,13 +12,11 @@
     "@googlemaps/js-api-loader": "^1.16.8",
     "@netlify/plugin-nextjs": "^5.11.2",
     "clsx": "^2.1.1",
+    "isomorphic-dompurify": "^2.26.0",
     "lucide-react": "^0.515.0",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-markdown": "^10.1.0",
-    "rehype-raw": "^7.0.0",
-    "remark-gfm": "^4.0.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

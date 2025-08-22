@@ -192,7 +192,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 					<div className={styles.form__footerSocial}>
 						<a
 							className={styles.form__footerSocialItem}
-							href="viber://chat"
+							href="viber://chat?number=380635103132"
 							aria-label="Viber"
 						>
 							<ViberIcon
@@ -203,7 +203,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 						</a>
 						<a
 							className={styles.form__footerSocialItem}
-							href="https://t.me/"
+							href="https://t.me/+380635103132"
 							aria-label="Telegram"
 						>
 							<TelegramIcon
@@ -214,7 +214,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ className }) => {
 						</a>
 						<a
 							className={styles.form__footerSocialItem}
-							href="tel:+380931234567"
+							href="tel:+380635103132"
 							aria-label="Phone"
 						>
 							<Phone

@@ -1,9 +1,19 @@
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background: transparent;
   z-index: 1000;
   padding: 16px 0;
   border-bottom: 1px solid var(--border-color-30);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: color-mix(in srgb, var(--background-dark) 95%, transparent);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--text-light) 10%, transparent);
 }
 
 .container {
@@ -39,11 +49,12 @@
 }
 
 .menuItem {
-  color: #ffffff;
+  position: relative;
+  color: var(--text-light);
 }
 
 .menuLink {
-  color: #ffffff;
+  color: var(--text-light);
   font-size: 16px;
   font-weight: 500;
   transition: color 0.2s;
@@ -51,6 +62,66 @@
 
 .menuLink:hover {
   color: var(--primary-color);
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: color-mix(in srgb, var(--background-dark) 95%, transparent);
+  backdrop-filter: blur(40px);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.menuItem:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  list-style: none;
+}
+
+.dropdownLink {
+  display: block;
+  padding: 12px 16px;
+  color: color-mix(in srgb, var(--text-light) 90%, transparent);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 0 8px;
+  text-align: left;
+}
+
+.dropdownLink:hover {
+  background: color-mix(in srgb, var(--text-light) 8%, transparent);
+  color: var(--primary-color);
+}
+
+.menuLinkWithDropdown {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.dropdownArrow {
+  transition: transform 0.2s ease;
+}
+
+.menuItem:hover .dropdownArrow {
+  transform: rotate(180deg);
 }
 
 .menuButton {
@@ -67,7 +138,7 @@
   display: block;
   width: 24px;
   height: 2px;
-  background: #ffffff;
+  background: var(--text-light);
   transition: all 0.3s;
 }
 
@@ -99,22 +170,27 @@
     top: 72px;
     left: 0;
     right: 0;
-    background: white;
     padding: 20px;
     flex-direction: column;
     align-items: stretch;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s;
     background: transparent;
     backdrop-filter: blur(40px);
+  }
+
+  .navbar.scrolled .menu {
+    background: color-mix(in srgb, var(--background-dark) 95%, transparent);
   }
 
   .menu.active {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .menuList {
@@ -140,5 +216,53 @@
 
   .menuButton.active span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile dropdown styles */
+  .dropdown {
+    position: static;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    margin-top: 0;
+    padding: 0;
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: none;
+    transition: all 0.3s ease;
+  }
+
+  .dropdown.dropdownOpen {
+    background: color-mix(in srgb, var(--text-light) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text-light) 10%, transparent);
+    border-radius: 8px;
+    margin-top: 8px;
+    padding: 8px 0;
+    opacity: 1;
+    visibility: visible;
+    max-height: 300px;
+  }
+
+  .dropdownLink {
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .dropdownLink:hover {
+    background: color-mix(in srgb, var(--text-light) 10%, transparent);
+  }
+
+  .menuLinkWithDropdown {
+    justify-content: space-between;
+    padding: 8px 0;
+    cursor: pointer;
+  }
+
+  .dropdownActive .dropdownArrow {
+    transform: rotate(180deg);
   }
 }

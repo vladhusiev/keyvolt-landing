@@ -54,7 +54,6 @@ function renderNode(node: SlateNode): string {
     case 'list-item':
       return `<li>${renderChildren()}</li>`
     case 'heading': {
-      console.log(node)
       const level = Math.min(Math.max(node.level || 1, 1), 6) // clamp 1–6
       return `<h${level}>${renderChildren()}</h${level}>`
     }

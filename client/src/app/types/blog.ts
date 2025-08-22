@@ -1,19 +1,19 @@
-// Simple blog types
-export interface BlogCategory {
-  id: number;
-  slug: string;
-  name: string;
-  description?: string;
-}
-
+// Simple types for blog data
 export interface BlogPost {
   id: number;
   slug: string;
   title: string;
   description: string;
   content: string;
-  coverImage: string;
+  thumbnail: string;
   date: string;
-  author: string;
-  category: BlogCategory; 
+  category: BlogCategory | null;
+  relatedArticles: BlogPost[];
+}
+
+export interface BlogCategory {
+  id: number;
+  slug: string;
+  name: string;
+  description?: string;
 }

@@ -1,5 +1,15 @@
 .postArticle {
-  padding-block: 120px;
+  padding-block: 200px 80px;
+
+  @media (max-width: 768px) {
+    padding-block: 160px 60px;
+  }
+}
+
+.postArticleBreadcrumb {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 24px;
 }
 
 .postArticleHeader {
@@ -39,4 +49,533 @@
 .postArticleContent {
   max-width: 800px;
   margin: 0 auto;
+  line-height: 1.7;
+  color: var(--text-light);
+  font-family: var(--font-primary);
+}
+
+/* Typography styles for content */
+.postArticleContent h1,
+.postArticleContent h2,
+.postArticleContent h3,
+.postArticleContent h4,
+.postArticleContent h5,
+.postArticleContent h6 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-light);
+  font-family: var(--font-primary);
+}
+
+.postArticleContent h1 {
+  font-size: 2.25rem;
+  margin-top: 0;
+}
+
+.postArticleContent h2 {
+  font-size: 1.875rem;
+}
+
+.postArticleContent h3 {
+  font-size: 1.5rem;
+}
+
+.postArticleContent h4 {
+  font-size: 1.25rem;
+}
+
+.postArticleContent h5 {
+  font-size: 1.125rem;
+}
+
+.postArticleContent h6 {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Paragraphs */
+.postArticleContent p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Lists */
+.postArticleContent ul,
+.postArticleContent ol {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.postArticleContent li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.postArticleContent ul li {
+  list-style-type: disc;
+}
+
+.postArticleContent ol li {
+  list-style-type: decimal;
+}
+
+/* Nested lists */
+.postArticleContent ul ul,
+.postArticleContent ol ol,
+.postArticleContent ul ol,
+.postArticleContent ol ul {
+  margin: 0.5rem 0;
+}
+
+/* Links */
+.postArticleContent a {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.postArticleContent a:hover {
+  color: var(--primary-color-dark);
+  border-bottom-color: var(--primary-color-dark);
+}
+
+/* Images */
+.postArticleContent img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  border-radius: 8px;
+}
+
+/* CKEditor Image Styles */
+.postArticleContent :global(.image) {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.postArticleContent :global(.image) img {
+  margin: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Image with side alignment */
+.postArticleContent :global(.image-style-side) {
+  float: right;
+  margin: 0 0 1rem 2rem;
+  max-width: 50%;
+  clear: right;
+}
+
+/* Image aligned left */
+.postArticleContent :global(.image-style-align-left),
+.postArticleContent :global(.image-style-left) {
+  float: left;
+  margin: 0 2rem 1rem 0;
+  max-width: 50%;
+  clear: left;
+}
+
+/* Image aligned right */
+.postArticleContent :global(.image-style-align-right),
+.postArticleContent :global(.image-style-right) {
+  float: right;
+  margin: 0 0 1rem 2rem;
+  max-width: 50%;
+  clear: right;
+}
+
+/* Image centered */
+.postArticleContent :global(.image-style-align-center),
+.postArticleContent :global(.image-style-center) {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  float: none;
+  clear: both;
+}
+
+/* Full width image */
+.postArticleContent :global(.image-style-full-width) {
+  width: 100%;
+  margin: 2rem 0;
+  float: none;
+  clear: both;
+}
+
+/* Inline image */
+.postArticleContent :global(.image-inline) {
+  display: inline-block;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+  max-width: none;
+}
+
+/* Image resize classes */
+.postArticleContent :global(.image-style-resize-25) {
+  width: 25%;
+}
+
+.postArticleContent :global(.image-style-resize-50) {
+  width: 50%;
+}
+
+.postArticleContent :global(.image-style-resize-75) {
+  width: 75%;
+}
+
+/* Clear floats after images */
+.postArticleContent :global(.image-style-side) + *,
+.postArticleContent :global(.image-style-align-left) + *,
+.postArticleContent :global(.image-style-left) + *,
+.postArticleContent :global(.image-style-align-right) + *,
+.postArticleContent :global(.image-style-right) + * {
+  clear: both;
+}
+
+/* Blockquotes */
+.postArticleContent blockquote {
+  margin: 2rem 0;
+  padding: 1.5rem 2rem;
+  background-color: var(--foreground);
+  border-left: 4px solid var(--primary-color);
+  font-style: italic;
+  color: var(--text-light);
+  border-radius: 4px;
+}
+
+.postArticleContent blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+.postArticleContent code {
+  background-color: var(--foreground);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--primary-color);
+}
+
+.postArticleContent pre {
+  background-color: var(--foreground);
+  border: 1px solid var(--border-color-30);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow-x: auto;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  line-height: 1.4;
+}
+
+.postArticleContent pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text-light);
+}
+
+/* Tables */
+.postArticleContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  background-color: var(--foreground);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.postArticleContent thead {
+  background-color: var(--foreground);
+}
+
+.postArticleContent th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid var(--border-color-30);
+  color: var(--text-light);
+}
+
+.postArticleContent td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color-30);
+  vertical-align: top;
+  text-align: left;
+}
+
+.postArticleContent tbody tr:nth-child(even) {
+  background-color: var(--foreground);
+}
+
+.postArticleContent tbody tr:hover {
+  background-color: var(--background-dark);
+}
+
+.postArticleContent tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Ensure links in tables are properly styled */
+.postArticleContent table a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  border-bottom: none;
+}
+
+.postArticleContent table a:hover {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+}
+
+/* Horizontal rules */
+.postArticleContent hr {
+  border: none;
+  height: 2px;
+  background-color: var(--border-color-30);
+  margin: 3rem 0;
+  border-radius: 1px;
+}
+
+/* Strong and emphasis */
+.postArticleContent strong {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.postArticleContent em {
+  font-style: italic;
+}
+
+/* Figure and figcaption */
+.postArticleContent figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.postArticleContent figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* CKEditor Figure Styles */
+.postArticleContent :global(figure.image) {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.postArticleContent :global(figure.image) img {
+  margin: 0 auto;
+  display: block;
+}
+
+.postArticleContent :global(figure.image) figcaption {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background-color: var(--foreground);
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* CKEditor figure with image styles */
+.postArticleContent :global(figure.image.image-style-side) {
+  float: right;
+  margin: 0 0 1rem 2rem;
+  max-width: 50%;
+  clear: right;
+  text-align: left;
+}
+
+.postArticleContent :global(figure.image.image-style-align-left),
+.postArticleContent :global(figure.image.image-style-left) {
+  float: left;
+  margin: 0 2rem 1rem 0;
+  max-width: 50%;
+  clear: left;
+  text-align: left;
+}
+
+.postArticleContent :global(figure.image.image-style-align-right),
+.postArticleContent :global(figure.image.image-style-right) {
+  float: right;
+  margin: 0 0 1rem 2rem;
+  max-width: 50%;
+  clear: right;
+  text-align: right;
+}
+
+/* CKEditor table figure */
+.postArticleContent :global(figure.table) {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.postArticleContent :global(figure.table) table {
+  margin: 0;
+}
+
+.postArticleContent :global(figure.table) figcaption {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* CKEditor Media Embed */
+.postArticleContent :global(figure.media) {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.postArticleContent :global(figure.media) iframe,
+.postArticleContent :global(figure.media) video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* CKEditor Text alignment classes */
+.postArticleContent :global(.text-align-left) {
+  text-align: left;
+}
+
+.postArticleContent :global(.text-align-center) {
+  text-align: center;
+}
+
+.postArticleContent :global(.text-align-right) {
+  text-align: right;
+}
+
+.postArticleContent :global(.text-align-justify) {
+  text-align: justify;
+}
+
+/* CKEditor Font size classes */
+.postArticleContent :global(.text-tiny) {
+  font-size: 0.7em;
+}
+
+.postArticleContent :global(.text-small) {
+  font-size: 0.85em;
+}
+
+.postArticleContent :global(.text-big) {
+  font-size: 1.15em;
+}
+
+.postArticleContent :global(.text-huge) {
+  font-size: 1.3em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .postArticleContent {
+    font-size: 0.95rem;
+  }
+
+  .postArticleContent h1 {
+    font-size: 1.875rem;
+  }
+
+  .postArticleContent h2 {
+    font-size: 1.5rem;
+  }
+
+  .postArticleContent h3 {
+    font-size: 1.25rem;
+  }
+
+  .postArticleContent ul,
+  .postArticleContent ol {
+    padding-left: 1.5rem;
+  }
+
+  .postArticleContent pre {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .postArticleContent table {
+    font-size: 0.9rem;
+  }
+
+  .postArticleContent th,
+  .postArticleContent td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .postArticleContent blockquote {
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  /* Mobile responsive for CKEditor image styles */
+  .postArticleContent :global(.image-style-side),
+  .postArticleContent :global(.image-style-align-left),
+  .postArticleContent :global(.image-style-left),
+  .postArticleContent :global(.image-style-align-right),
+  .postArticleContent :global(.image-style-right) {
+    float: none;
+    margin: 1.5rem auto;
+    max-width: 100%;
+    display: block;
+    text-align: center;
+    clear: both;
+  }
+
+  .postArticleContent :global(figure.image.image-style-side),
+  .postArticleContent :global(figure.image.image-style-align-left),
+  .postArticleContent :global(figure.image.image-style-left),
+  .postArticleContent :global(figure.image.image-style-align-right),
+  .postArticleContent :global(figure.image.image-style-right) {
+    float: none;
+    margin: 1.5rem auto;
+    max-width: 100%;
+    text-align: center;
+    clear: both;
+  }
+
+  .postArticleContent :global(figure.image) figcaption {
+    text-align: center;
+  }
+}
+
+.postArticleRelated {
+  display: grid;
+  gap: 24px;
+  padding-bottom: 120px;
+
+  @media (max-width: 768px) {
+    padding-bottom: 80px;
+  }
+}
+
+.postArticleRelatedList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

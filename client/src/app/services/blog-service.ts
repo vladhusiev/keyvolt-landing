@@ -1,33 +1,18 @@
-import { getStrapiURL, getStrapiMedia } from '../utlis/get-strapi-url';
-
-// Simple types for blog data
-export interface BlogPost {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  content: string;
-  coverImage: string;
-  date: string;
-  category: BlogCategory; 
-}
-
-export interface BlogCategory {
-  id: number;
-  slug: string;
-  name: string;
-  description?: string;
-}
+import { BlogPost, BlogCategory } from "../types/blog";
+import { getStrapiURL, getStrapiMedia } from "../utlis/get-strapi-url";
 
 // Helper to build Strapi API URLs
-function buildUrl(endpoint: string, params: Record<string, string> = {}): string {
+function buildUrl(
+  endpoint: string,
+  params: Record<string, string> = {}
+): string {
   const baseUrl = getStrapiURL();
   const url = new URL(`/api/${endpoint}`, baseUrl);
-  
+
   Object.entries(params).forEach(([key, value]) => {
     url.searchParams.append(key, value);
   });
-  
+
   return url.toString();
 }
 
@@ -39,13 +24,21 @@ function transformPost(data: any): BlogPost {
     title: data.title,
     description: data.description,
     content: data.content,
-    coverImage: getStrapiMedia(data.coverImage?.data?.attributes?.url) || '/images/hero.png',
+    thumbnail: getStrapiMedia(data.thumbnail?.url || ""),
     date: data.publishedAt || data.createdAt,
-    category: {
-      id: data.category.id,
-      slug: data.category.slug,
-      name: data.category.name,
-    }
+    category: data.category
+      ? {
+          id: data.category.id,
+          slug: data.category.slug,
+          name: data.category.name,
+        }
+      : null,
+
+    relatedArticles: Array.isArray(data.relatedArticles)
+      ? data.relatedArticles.map(transformPost)
+      : data.relatedArticles
+      ? [transformPost(data.relatedArticles)]
+      : [],
   };
 }
 
@@ -60,54 +53,59 @@ async function fetchFromStrapi(url: string) {
 
 // Export simple functions
 export async function getAllPosts(): Promise<BlogPost[]> {
-  const url = buildUrl('blogs', {
-    'sort[0]': 'publishedAt:desc',
-    'populate[category]': 'true'
+  const url = buildUrl("blogs", {
+    "sort[0]": "publishedAt:desc",
+    "populate[category]": "true",
+    "populate[thumbnail]": "true",
   });
 
-  console.log('url', url);
-  
   const data = await fetchFromStrapi(url);
-  console.log('data', data);
   return data.data.map(transformPost);
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const url = buildUrl('blogs', {
-    'filters[slug][$eq]': slug,
-    'populate[category]': 'true'
+  const url = buildUrl("blogs", {
+    "filters[slug][$eq]": slug,
+    "populate[category]": "true",
+    "populate[thumbnail]": "true",
+    "populate[relatedArticles][populate][category]": "true",
+    "populate[relatedArticles][populate][thumbnail]": "true",
   });
-  
+
   const data = await fetchFromStrapi(url);
   return data.data.length > 0 ? transformPost(data.data[0]) : null;
 }
 
-export async function getPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
-  const url = buildUrl('blogs', {
-    'filters[category][slug][$eq]': categorySlug,
-    'populate[category]': 'true',
-    'sort[0]': 'publishedAt:desc'
+export async function getPostsByCategory(
+  categorySlug: string
+): Promise<BlogPost[]> {
+  const url = buildUrl("blogs", {
+    "filters[category][slug][$eq]": categorySlug,
+    "sort[0]": "publishedAt:desc",
+    "populate[category]": "true",
+    "populate[thumbnail]": "true",
   });
-  
+
   const data = await fetchFromStrapi(url);
   return data.data.map(transformPost);
 }
 
 export async function getAllCategories(): Promise<BlogCategory[]> {
-  const url = buildUrl('categories', {
-    'sort[0]': 'name:asc'
+  const url = buildUrl("categories", {
+    "sort[0]": "name:asc",
   });
-  
+
   const data = await fetchFromStrapi(url);
   return data.data;
 }
 
-export async function getCategoryBySlug(slug: string): Promise<BlogCategory | null> {
-  const url = buildUrl('categories', {
-    'filters[slug][$eq]': slug
+export async function getCategoryBySlug(
+  slug: string
+): Promise<BlogCategory | null> {
+  const url = buildUrl("categories", {
+    "filters[slug][$eq]": slug,
   });
-  
+
   const data = await fetchFromStrapi(url);
-  console.log('data', data.data);
   return data.data.length > 0 ? data.data[0] : null;
 }

@@ -7,7 +7,11 @@ import { notFound } from "next/navigation";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../sections/footer/footer";
 import Title from "@/app/components/custom/Title/title";
-import { MarkdownRenderer } from "@/app/components/markdown-renderer/markdown-renderer";
+import DOMPurify from "isomorphic-dompurify";
+import Breadcrumb, {
+  BreadcrumbItem,
+} from "../../components/breadcrumb/breadcrumb";
+import BlogCard from "@/app/components/blog/blog-card/blog-card";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -46,7 +50,7 @@ export async function generateMetadata({
       description: post.description,
       type: "article",
       siteName: "KeyVolt Energy",
-      images: [post.coverImage],
+      images: [post.thumbnail],
       publishedTime: post.date,
       authors: ["KeyVolt Energy"],
     },
@@ -54,7 +58,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [post.coverImage],
+      images: [post.thumbnail],
     },
   };
 }
@@ -62,17 +66,29 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
+  const sanitizedContent = DOMPurify.sanitize(post?.content || "");
+  const breadcrumbItems: BreadcrumbItem[] = [{ label: "Блог", href: "/blog" }];
 
   if (!post) {
     notFound();
   }
 
+  if (post.category) {
+    breadcrumbItems.push({
+      label: post.category.name,
+      href: `/blog/category/${post.category.slug}`,
+    });
+  }
+
   return (
     <main>
       <Navbar />
-
       <article className={styles.postArticle}>
         <Container>
+          <Breadcrumb
+            className={styles.postArticleBreadcrumb}
+            items={breadcrumbItems}
+          />
           <header className={styles.postArticleHeader}>
             <Title tag="h1" className={styles.postArticleTitle}>
               {post.title}
@@ -86,20 +102,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               })}
             </span>
           </header>
-          <div className={styles.postArticleCover}>
-            <Image
-              width={1024}
-              height={576}
-              style={{ width: "100%", height: "100%" }}
-              src={post.coverImage}
-              alt={post.title}
-            />
-          </div>
+          {post.thumbnail && (
+            <div className={styles.postArticleCover}>
+              <Image
+                width={1024}
+                height={576}
+                style={{ width: "100%", height: "100%" }}
+                src={post.thumbnail}
+                alt={post.title}
+              />
+            </div>
+          )}
           <div className={styles.postArticleContent}>
-            <MarkdownRenderer content={post.content} />
+            <div dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
           </div>
         </Container>
       </article>
+      {post.relatedArticles.length > 0 && (
+        <Container>
+          <section className={styles.postArticleRelated}>
+            <Title
+              tag="h3"
+              className={styles.postArticleRelatedTitle}
+              decorator={false}
+            >
+              Схожі статті
+            </Title>
+            <ul className={styles.postArticleRelatedList}>
+              {post.relatedArticles.map((article) => (
+                <BlogCard
+                  className={styles.postArticleRelatedItem}
+                  key={article.id}
+                  post={article}
+                  as="li"
+                />
+              ))}
+            </ul>
+          </section>
+        </Container>
+      )}
       <Footer />
     </main>
   );

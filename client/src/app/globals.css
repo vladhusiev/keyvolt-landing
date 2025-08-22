@@ -35,7 +35,7 @@
 	--primary-color-dark: #d4a800;
 	--primary-color-light: #f5d54e;
 	--text-primary: #1a1a1a;
-	--text-light: ##ffffff;
+	--text-light: #ffffff;
 	--text-secondary: rgba(255, 255, 255, 0.8);
 	--bg-light: #f8f9fa;
 	--border-color: #e5e5e5;
@@ -68,6 +68,7 @@ input[type='number']::-webkit-inner-spin-button {
 
 /* Для Firefox */
 input[type='number'] {
+	appearance: textfield;
 	-moz-appearance: textfield;
 }
 

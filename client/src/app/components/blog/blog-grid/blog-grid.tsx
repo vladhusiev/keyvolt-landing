@@ -23,17 +23,17 @@ const BlogGrid: React.FC<BlogGridProps> = ({
     router.push(categorySlug ? `/blog/category/${categorySlug}` : "/blog");
   };
 
-  if (posts.length === 0) {
+  if (posts.length === 0 && searchQuery) {
     return (
       <div className={styles.blogGridEmpty}>
         <p className={styles.blogGridEmptyText}>Статті не знайдено</p>
-
-        {searchQuery && (
-          <Button variant="altLight" onClick={handleClearSearch}>Очистити пошук</Button>
-        )}
+        <Button variant="altLight" onClick={handleClearSearch}>
+          Очистити пошук
+        </Button>
       </div>
     );
   }
+
   const featuredPosts = posts.slice(0, 2);
   const regularPosts = posts.slice(2);
 

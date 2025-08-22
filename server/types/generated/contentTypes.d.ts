@@ -386,21 +386,24 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
   attributes: {
     category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
-    content: Schema.Attribute.RichText;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    featuredArticles: Schema.Attribute.Component<
-      'blocks.featured-articles',
-      false
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    relatedArticles: Schema.Attribute.Relation<'oneToOne', 'api::blog.blog'>;
     slug: Schema.Attribute.UID<'title'>;
-    text: Schema.Attribute.Blocks;
     thumbnail: Schema.Attribute.Media<'images' | 'files'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;

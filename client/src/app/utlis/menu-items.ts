@@ -1,7 +1,8 @@
-interface MenuItem {
+export interface MenuItem {
   id: string;
   label: string;
-  href: string;
+  href?: string;
+  children?: MenuItem[];
 }
 
 export const menuItems: MenuItem[] = [
@@ -9,6 +10,13 @@ export const menuItems: MenuItem[] = [
   { id: "how-it-works", label: "Принцип роботи", href: "#how-it-works" },
   { id: "economics", label: "Економіка", href: "#economics" },
   { id: "cases", label: "Кейси", href: "#cases" },
-  { id: "about", label: "Про Нас", href: "#about" },
-  { id: "vacancies", label: "Вакансії", href: "/vacancies" },
+  {
+    id: "company",
+    label: "Компанія",
+    children: [
+      { id: "about", label: "Про нас", href: "#about" },
+      { id: "blog", label: "Блог", href: "/blog" },
+      { id: "vacancies", label: "Вакансії", href: "/vacancies" },
+    ],
+  },
 ];
