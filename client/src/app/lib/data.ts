@@ -15,8 +15,10 @@ export const getServerData = async (): Promise<Data> => {
       process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
     const url = new URL(path, BASE_URL);
 
-    const response = await fetch(url.href);
-  
+    const response = await fetch(url.href, {
+      cache: "no-store",
+    });
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
