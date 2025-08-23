@@ -19,6 +19,7 @@ import Navbar from "../../../components/navbar/navbar";
 import Footer from "../../../sections/footer/footer";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { seoConfig, generateCanonicalUrl } from "../../../lib/seo-config";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -31,7 +32,7 @@ export async function generateStaticParams() {
       category: category.slug,
     }));
   } catch (error) {
-    console.error('Failed to fetch categories for static generation:', error);
+    console.error("Failed to fetch categories for static generation:", error);
     return [];
   }
 }
@@ -49,9 +50,36 @@ export async function generateMetadata({
     };
   }
 
+  const canonical = generateCanonicalUrl(`/blog/category/${category.slug}`);
+  const title = `${category.name} | KeyVolt Energy Блог`;
+  const description = `Категорія: ${category.name} | Блог KeyVolt Energy про сонячну енергетику, наші проекти, новини та інше`;
+
   return {
-    title: `${category.name} | KeyVolt Energy Блог`,
-    description: `Категорія: ${category.name} | Блог KeyVolt Energy про сонячну енергетику, наші проекти, новини та інше`,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: seoConfig.siteName,
+      images: [
+        {
+          url: seoConfig.defaultOGImage,
+          width: 1200,
+          height: 630,
+          alt: `${seoConfig.siteName} - ${description}`,
+        },
+      ],
+      type: "website",
+      locale: "uk_UA",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [seoConfig.defaultTwitterImage],
+    },
   };
 }
 
@@ -84,7 +112,7 @@ export default async function BlogCategoryPage({
       <Navbar />
       <section className={styles.blogSection}>
         <Container>
-          <Title>Блог</Title>
+          <Title tag="h1">{category.name}</Title>
 
           <BlogTopBar
             categories={categories}

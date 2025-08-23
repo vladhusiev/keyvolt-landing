@@ -9,12 +9,43 @@ import BlogGrid from "@/app/components/blog/blog-grid/blog-grid";
 import Navbar from "../components/navbar/navbar";
 import Footer from "../sections/footer/footer";
 import { getAllCategories, getAllPosts } from "../lib/blog-data";
+import type { Metadata } from "next";
+import { seoConfig, generateCanonicalUrl } from "../lib/seo-config";
 
-export const metadata = {
-  title: "Блог | KeyVolt Energy",
-  description:
-    "Блог KeyVolt Energy про сонячну енергетику, наші проекти, новини та інше",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const title = "Блог | KeyVolt Energy";
+  const description =
+    "Блог KeyVolt Energy про сонячну енергетику, наші проекти, новини та інше";
+  const canonical = generateCanonicalUrl("/blog");
+
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      siteName: seoConfig.siteName,
+      images: [
+        {
+          url: seoConfig.defaultOGImage,
+          width: 1200,
+          height: 630,
+          alt: `${seoConfig.siteName} - ${description}`,
+        },
+      ],
+      type: "website",
+      locale: "uk_UA",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [seoConfig.defaultTwitterImage],
+    },
+  };
+}
 
 export default async function BlogIndexPage({
   searchParams,
@@ -39,7 +70,7 @@ export default async function BlogIndexPage({
       <Navbar />
       <section className={styles.blogSection}>
         <Container>
-          <Title>Блог</Title>
+          <Title tag="h1">Блог</Title>
           <BlogTopBar
             categories={categories}
             searchQuery={q}

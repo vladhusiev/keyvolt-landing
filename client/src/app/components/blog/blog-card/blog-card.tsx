@@ -9,7 +9,7 @@ interface BlogCardProps {
   post: BlogPost;
   isFeatured?: boolean;
   className?: string;
-  as?: "li" | "div";
+  as?: "li" | "div" | "article";
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
@@ -41,13 +41,16 @@ const BlogCard: React.FC<BlogCardProps> = ({
       )}
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{post.title}</h3>
-        <span className={styles.cardDate}>
+        <time
+          className={styles.cardDate}
+          dateTime={new Date(post.date).toISOString()}
+        >
           {new Date(post.date).toLocaleDateString("uk-UA", {
             day: "numeric",
             month: "long",
             year: "numeric",
           })}
-        </span>
+        </time>
         {isFeatured && (
           <p className={styles.cardDescription}>{post.description}</p>
         )}

@@ -12,6 +12,8 @@ import Breadcrumb, {
   BreadcrumbItem,
 } from "../../components/breadcrumb/breadcrumb";
 import BlogCard from "@/app/components/blog/blog-card/blog-card";
+import { seoConfig, generateCanonicalUrl } from "../../lib/seo-config";
+import { ArticleStructuredData } from "../../components/seo/ArticleStructuredData";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -43,22 +45,26 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | KeyVolt Energy Блог`,
+    title: post.title,
     description: post.description,
     openGraph: {
       title: post.title,
       description: post.description,
       type: "article",
-      siteName: "KeyVolt Energy",
+      siteName: seoConfig.siteName,
+      url: generateCanonicalUrl(`/blog/${slug}`),
       images: [post.thumbnail],
       publishedTime: post.date,
-      authors: ["KeyVolt Energy"],
+      authors: [seoConfig.author],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [post.thumbnail],
+      images: [post.thumbnail || seoConfig.defaultTwitterImage],
+    },
+    alternates: {
+      canonical: generateCanonicalUrl(`/blog/${slug}`),
     },
   };
 }
@@ -94,14 +100,33 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {post.title}
             </Title>
             <p className={styles.postArticleDescription}>{post.description}</p>
-            <span className={styles.postArticleDate}>
+            <time
+              className={styles.postArticleDate}
+              dateTime={new Date(post.date).toISOString()}
+            >
               {new Date(post.date).toLocaleDateString("uk-UA", {
                 day: "numeric",
                 month: "long",
                 year: "numeric",
               })}
-            </span>
+            </time>
           </header>
+          <ArticleStructuredData
+            url={generateCanonicalUrl(`/blog/${post.slug}`)}
+            title={post.title}
+            description={post.description}
+            image={post.thumbnail}
+            datePublished={post.date}
+            dateModified={post.date}
+            authorName={seoConfig.author}
+            publisherName={seoConfig.siteName}
+            breadcrumbs={breadcrumbItems.map((b) => ({
+              name: b.label,
+              item: b.href
+                ? generateCanonicalUrl(b.href)
+                : generateCanonicalUrl(`/blog/${post.slug}`),
+            }))}
+          />
           {post.thumbnail && (
             <div className={styles.postArticleCover}>
               <Image
