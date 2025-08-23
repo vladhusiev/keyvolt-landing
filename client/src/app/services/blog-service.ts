@@ -1,4 +1,4 @@
-import { BlogPost, BlogCategory } from "../types/blog";
+import { BlogPost, BlogCategory, BlogDataResponse } from "../types/blog";
 import { getStrapiURL, getStrapiMedia } from "../utlis/get-strapi-url";
 
 // Helper to build Strapi API URLs
@@ -17,7 +17,7 @@ function buildUrl(
 }
 
 // Transform Strapi response to our format
-function transformPost(data: any): BlogPost {
+function transformPost(data: BlogDataResponse): BlogPost {
   return {
     id: data.id,
     slug: data.slug,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./categories-list.module.css";
 import clsx from "clsx";
-import { BlogCategory } from "@/app/services/blog-service";
+import { BlogCategory } from "@/app/types/blog";
 
 interface CategoriesListProps {
   categories: BlogCategory[];

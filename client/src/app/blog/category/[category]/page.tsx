@@ -124,7 +124,7 @@ export default async function BlogCategoryPage({
           {hasNoPosts ? (
             <div className={styles.emptyCategory}>
               <h3 className={styles.emptyCategoryTitle}>
-                Поки що немає статей у категорії "{category.name}"
+                Поки що немає статей у категорії &quot;{category.name}&quot;
               </h3>
               <p className={styles.emptyCategoryDescription}>
                 Незабаром ми додамо цікаві матеріали. Перегляньте інші категорії
