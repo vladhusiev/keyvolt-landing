@@ -1,6 +1,8 @@
 export default ({ env }) => ({
   upload: {
     config: {
+      allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
+      allowedFormats: ['jpeg', 'png', 'webp', 'avif', 'gif', 'svg'],
       provider: 'local',
       providerOptions: {
         sizeLimit: 1500000, // 1.5MB limit
