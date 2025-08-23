@@ -15,6 +15,7 @@ export default function Cases({
   };
 }) {
   const { cases_title, cases_description, items } = casesContent;
+
   return (
     <section className={styles.cases} id="cases">
       <Container>
@@ -23,16 +24,14 @@ export default function Cases({
         <Accordion
           items={items.map((item) => ({
             title: item.title,
-            image: getOptimizedImageUrl(item.image?.url || "", {
-              width: 1200,
-              height: 453,
-              quality: 85,
-            }),
-            description: (
-              <>
-                <p>{item.description}</p>
-              </>
-            ),
+            image: item.image?.url
+              ? getOptimizedImageUrl(item.image.url, {
+                  width: 1200,
+                  height: 453,
+                  quality: 85,
+                })
+              : null,
+            description: item.description,
           }))}
         />
       </Container>

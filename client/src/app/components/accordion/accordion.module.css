@@ -1,154 +1,154 @@
 .accordion {
-	width: 100%;
+  width: 100%;
 }
 
 .accordion__item {
-	overflow: hidden;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .accordion__title {
-	width: 100%;
-	text-align: left;
-	padding: 20px;
-	font-size: 1.3rem;
-	font-weight: bold;
-	background: none;
-	border: none;
-	color: #fff;
-	cursor: pointer;
-	outline: none;
-	transition: background 0.2s, color 0.2s;
-	gap: 60px;
-	display: flex;
-	align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s, color 0.2s;
+  gap: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .accordion__title__number {
-	font-size: 32px;
-	font-weight: 400;
-	color: #fff;
-	letter-spacing: 0;
-	transition: color 0.2s;
-	min-width: 40px;
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  letter-spacing: 0;
+  transition: color 0.2s;
+  min-width: 40px;
 }
 
 .accordion__title--active .accordion__title__number {
-	color: #181818;
+  color: #181818;
 }
 
 .accordion__title__arrow {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 40px;
-	height: 40px;
-	margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
 
-	&.accordion__title__arrow__icon {
-		color: var(--text-light);
-		transition: transform 0.3s;
-	}
+  &.accordion__title__arrow__icon {
+    color: var(--text-light);
+    transition: transform 0.3s;
+  }
 }
 
 .accordion__title--active .accordion__title__arrow__icon {
-	transform: rotate(180deg);
-	color: #181818;
+  transform: rotate(180deg);
+  color: #181818;
 }
 
 .accordion__title:hover {
-	background: #222;
+  background: #222;
 }
 
 .accordion__title--active {
-	background: #eebd00;
-	color: #181818;
+  background: #eebd00;
+  color: #181818;
 }
 
 .accordion__content {
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.3s ease;
-	background: #111;
-	padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #111;
+  padding: 0 20px;
 }
 
 .accordion__content__open {
-	max-height: 500px;
-	transition: max-height 0.5s ease;
-	position: relative;
+  max-height: 500px;
+  transition: max-height 0.5s ease;
+  position: relative;
 }
 
 .accordion__content__container {
-	position: relative;
-	max-height: 453px;
-	overflow: hidden;
+  position: relative;
+  max-height: 453px;
+  overflow: hidden;
 }
 
 .accordion__content__image {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .accordion__content__container img {
-	width: 100%;
-	height: 453px;
-	object-fit: cover;
+  width: 100%;
+  height: 453px;
+  object-fit: cover;
 }
 
 .accordion__content__text {
-	position: absolute;
-	top: 42px;
-	left: 42px;
-	width: 557px;
-	padding: 42px;
-	background: #070707;
-	border-radius: 20px;
+  position: absolute;
+  top: 42px;
+  left: 42px;
+  width: 557px;
+  padding: 42px;
+  background: #070707;
+  border-radius: 20px;
 }
 
 .accordion__content__text__title {
-	font-size: 32px;
-	font-weight: 600;
-	line-height: 1.2;
-	letter-spacing: 0;
-	color: #fff;
-	margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 .accordion__title__arrow__icon__active {
-	transform: rotate(90deg);
-	color: #181818;
+  transform: rotate(90deg);
+  color: #181818;
 }
 
 @media (max-width: 600px) {
-	.accordion__title {
-		padding: 12px;
-		font-size: 1rem;
-		gap: 20px;
-	}
-	.accordion__title__number {
-		font-size: 20px;
-	}
-	.accordion__title__arrow {
-		width: 28px;
-		height: 28px;
-	}
-	.accordion__content,
-	.accordion__content__open {
-		padding: 0 8px;
-	}
-	.accordion__content__text {
-		width: 80%;
-		left: 10px;
-		top: 10px;
-		padding: 24px;
-		background: rgba(7, 7, 7, 0.8);
-	}
-	.accordion__content__text__title {
-		font-size: 24px;
-		margin-bottom: 16px;
-	}
+  .accordion__title {
+    padding: 12px;
+    font-size: 1rem;
+    gap: 20px;
+  }
+  .accordion__title__number {
+    font-size: 20px;
+  }
+  .accordion__title__arrow {
+    width: 28px;
+    height: 28px;
+  }
+  .accordion__content,
+  .accordion__content__open {
+    padding: 0 8px;
+  }
+  .accordion__content__text {
+    width: 80%;
+    left: 10px;
+    top: 10px;
+    padding: 24px;
+    background: rgba(7, 7, 7, 0.8);
+  }
+  .accordion__content__text__title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
 }
