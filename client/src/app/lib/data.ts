@@ -16,7 +16,9 @@ export const getServerData = async (): Promise<Data> => {
     const url = new URL(path, BASE_URL);
 
     const response = await fetch(url.href, {
-      cache: "no-store",
+      next: {
+        revalidate: 5,
+      },
     });
 
     if (!response.ok) {
