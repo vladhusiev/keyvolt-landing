@@ -10,7 +10,7 @@ import styles from "./page.module.css";
 import Button from "../components/custom/Button/button";
 
 export const metadata = {
-  title: "Вакансії | KeyVolt Energy",
+  title: "Вакансії",
   description:
     "Приєднуйтесь до команди KeyVolt Energy. Знайдіть свою ідеальну вакансію в сфері сонячної енергетики",
 };

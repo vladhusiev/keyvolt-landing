@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import { seoConfig, generateCanonicalUrl } from "../lib/seo-config";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title = "Блог | KeyVolt Energy";
+  const title = "Блог";
   const description =
     "Блог KeyVolt Energy про сонячну енергетику, наші проекти, новини та інше";
   const canonical = generateCanonicalUrl("/blog");
