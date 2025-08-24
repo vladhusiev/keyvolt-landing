@@ -1,20 +1,26 @@
 export default ({ env }) => ({
   upload: {
     config: {
-      allowedMimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/avif'],
-      allowedFormats: ['jpeg', 'png', 'webp', 'avif', 'gif', 'svg'],
-      provider: 'local',
+      provider: env("UPLOAD_PROVIDER", "local"),
       providerOptions: {
-        sizeLimit: 1500000, // 1.5MB limit
+        sizeLimit: env.int("UPLOAD_SIZE_LIMIT", 25 * 1024 * 1024),
       },
       breakpoints: {
-        xlarge: 1920,
         large: 1000,
         medium: 750,
         small: 500,
-        xsmall: 64,
-        thumbnail: 150,
       },
+      allowedMimeTypes: env.bool("STRICT_IMAGE_INPUTS", true)
+        ? ["image/jpeg", "image/png", "image/webp"]
+        : [
+            "image/jpeg",
+            "image/png",
+            "image/webp",
+            "image/avif",
+            "image/gif",
+            "image/svg+xml",
+          ],
+      allowedFormats: ["jpeg", "png", "webp"],
     },
   },
 });
